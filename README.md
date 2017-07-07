@@ -12,11 +12,11 @@ Getting started
 Gradle
 ------
 
-Just add the "compile 'com.msg91.sendotp.library:library:3.2'" in your build.gradle of your module.
+Just add the "compile 'com.msg91.sendotp.library:library:3.1'" in your build.gradle of your module.
 
     dependencies {
     ...
-    compile 'com.msg91.sendotp.library:library:3.2'
+    compile 'com.msg91.sendotp.library:library:3.1'
     ...
     }
 Maven
@@ -26,7 +26,7 @@ grab via Maven:
     <dependency>
        <groupId>com.msg91.sendotp.library</groupId>
        <artifactId>library</artifactId>
-       <version>3.2</version>
+       <version>3.1</version>
        <type>pom</type>
     </dependency>
 
