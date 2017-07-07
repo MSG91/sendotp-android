@@ -1,0 +1,144 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="0dip"
+                tools:context=".VerificationActivity">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/msg91_logo"
+        android:visibility="gone"
+        />
+
+    <LinearLayout
+        android:id="@+id/textWrapper"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:gravity="center"
+            android:text="@string/sending_sms"
+            android:textAllCaps="true"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/numberText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="0dp"
+            android:hint="Enter Number"
+            android:text="+46123456789"
+            android:textAllCaps="true"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp"/>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <LinearLayout
+                android:id="@+id/inputContainer"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center"
+                    android:text="@string/entercode"
+                    android:textAllCaps="true"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="18sp"/>
+
+                <EditText
+                    android:id="@+id/inputCode"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="10dp"
+                    android:inputType="number"/>
+
+
+                <Button
+                    android:id="@+id/codeInputButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/button_blue_generic"
+                    android:minHeight="56dp"
+                    android:onClick="onSubmitClicked"
+                    android:text="Enter"
+                    android:textAllCaps="true"
+                    android:textColor="#ffffff"
+                    android:textSize="20sp"/>
+
+                <TextView
+                    android:id="@+id/resend_timer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:text="Resend via call ()"
+                    android:textColor="@color/sendotp_grey"
+                    android:textSize="16sp"/>
+            </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/progressIndicator"
+                android:layout_width="240dp"
+                android:layout_height="240dp"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:indeterminate="false"
+                android:indeterminateDrawable="@drawable/progress"
+                android:indeterminateDuration="3000"
+                android:visibility="invisible"/>
+
+            <ImageView
+                android:id="@+id/checkmarkImage"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/checkmark"
+                android:visibility="invisible"
+                />
+        </RelativeLayout>
+
+
+        <TextView
+            android:id="@+id/progressText"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:paddingBottom="20dp"
+            android:text="@string/inprogress"
+            android:textAllCaps="true"
+            android:textColor="@color/sendotp_light_grey"
+            android:textSize="22sp"/>
+
+    </LinearLayout>
+
+</RelativeLayout>
