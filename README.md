@@ -16,19 +16,19 @@ Just add the "compile 'com.msg91.sendotp.library:library:3.1'" in your build.gra
 
     dependencies {
     ...
-    compile 'com.msg91.sendotp.library:library:3.1'
+     implementation 'com.msg91.sendotpandroid.library:library:0.1'
     ...
     }
 Maven
 ------
 grab via Maven:
 
-    <dependency>
-       <groupId>com.msg91.sendotp.library</groupId>
-       <artifactId>library</artifactId>
-       <version>3.1</version>
-       <type>pom</type>
-    </dependency>
+<dependency>
+  <groupId>com.msg91.sendotpandroid.library</groupId>
+  <artifactId>library</artifactId>
+  <version>0.1</version>
+  <type>pom</type>
+</dependency>
 
 > -Login or create account at [MSG91](https://msg91.com/signup/sendotp) to use sendOTP services.
 
