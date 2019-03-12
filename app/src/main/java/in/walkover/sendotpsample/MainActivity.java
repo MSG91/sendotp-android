@@ -16,9 +16,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.msg91.sendotp.library.PhoneNumberFormattingTextWatcher;
-import com.msg91.sendotp.library.PhoneNumberUtils;
-import com.msg91.sendotp.library.internal.Iso2Phone;
+import com.msg91.sendotpandroid.library.PhoneNumberFormattingTextWatcher;
+import com.msg91.sendotpandroid.library.PhoneNumberUtils;
+import com.msg91.sendotpandroid.library.internal.Iso2Phone;
 
 import java.util.Locale;
 
