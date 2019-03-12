@@ -81,19 +81,25 @@ After login at [MSG91](https://control.msg91.com/) </i> follow below steps to ge
 create instance of **Verification** as a class variable and `initialise` it by passing country code and mobile number.
 Optional Parameters are gose in blow method.
 
-            mVerification = SendOtpVerification.createSmsVerification
+ mVerification = SendOtpVerification.createSmsVerification
                     (SendOtpVerification
                             .config(countryCode + phoneNumber)
                             .context(this)
                             .autoVerification(false)
                             .httpsConnection(false)//connection to be use in network calls
-                            .expiry(5)//value in minutes
+                            .expiry("5")//value in minutes
                             .senderId("XXXX") //where XXXX is any string
-                            .otp("1234")// Default Otp code if want to add yours
-                            .otplength("4") //length of your otp
-                            .message("##OTP## is Your verification digits.")
+                            .otplength("4") //length of your otp max length up to 9 digits
+                            //--------case 1-------------------
+                            .message("##OTP## is Your verification digits.")//##OTP## use for default generated OTP
+                          //--------case 2-------------------
+                            .otp("1234")// Custom Otp code, if want to add yours
+                            .message("1234 is Your verification digits.")//Here 1234 same as above Custom otp.
+                            //-------------------------------------
+                            //use single case at a time either 1 or 2
                             .build(), this);
             mVerification.initiate();
+	    
 Note : Add SMS read permission for autoVerification.
 
 sending OTP
