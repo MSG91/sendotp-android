@@ -18,9 +18,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.msg91.sendotp.library.SendOtpVerification;
-import com.msg91.sendotp.library.Verification;
-import com.msg91.sendotp.library.VerificationListener;
+import com.msg91.sendotpandroid.library.SendOtpVerification;
+import com.msg91.sendotpandroid.library.Verification;
+import com.msg91.sendotpandroid.library.VerificationListener;
 
 public class VerificationActivity extends AppCompatActivity implements
         ActivityCompat.OnRequestPermissionsResultCallback, VerificationListener {
