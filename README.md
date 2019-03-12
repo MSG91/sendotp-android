@@ -81,8 +81,8 @@ After login at [MSG91](https://control.msg91.com/) </i> follow below steps to ge
 create instance of **Verification** as a class variable and `initialise` it by passing country code and mobile number.
 Optional Parameters are gose in blow method.
 
- mVerification = SendOtpVerification.createSmsVerification
-                    (SendOtpVerification
+	 mVerification = SendOtpVerification.createSmsVerification
+ 	                   (SendOtpVerification
                             .config(countryCode + phoneNumber)
                             .context(this)
                             .autoVerification(false)
@@ -98,7 +98,7 @@ Optional Parameters are gose in blow method.
                             //-------------------------------------
                             //use single case at a time either 1 or 2
                             .build(), this);
-            mVerification.initiate();
+    	        mVerification.initiate();
 	    
 Note : Add SMS read permission for autoVerification.
 
