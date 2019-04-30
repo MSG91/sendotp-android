@@ -1,4 +1,4 @@
-package com.msg91.sendotp.sample;
+package in.walkover.sendotpsample;
 
 import android.Manifest;
 import android.content.Context;
