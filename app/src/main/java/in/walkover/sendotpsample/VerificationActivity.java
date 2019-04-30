@@ -200,7 +200,7 @@ public class VerificationActivity extends AppCompatActivity implements
             public void onFinish() {
                 resend_timer.setClickable(true);
                 resend_timer.setText("Resend via call");
-                resend_timer.setTextColor(ContextCompat.getColor(VerificationActivity.this, R.color.send_otp_blue));
+                resend_timer.setTextColor(ContextCompat.getColor(VerificationActivity.this, R.color.colorPrimary));
             }
         }.start();
     }
