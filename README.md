@@ -16,7 +16,7 @@ Just add the "compile 'com.msg91.sendotp.library:library:3.1'" in your build.gra
 
     dependencies {
     ...
-     implementation 'com.msg91.sendotpandroid.library:library:0.2'
+     implementation 'com.msg91.sendotpandroid.library:library:0.4'
      //------------------required dependencies-----------------
     implementation 'com.squareup.okhttp3:okhttp:VERSION_OF_DEPENDENCIE' //optional
     implementation 'com.googlecode.libphonenumber:libphonenumber:VERSION_OF_DEPENDENCIE' //required
