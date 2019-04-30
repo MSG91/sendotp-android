@@ -1,4 +1,4 @@
-package in.walkover.sendotpsample;
+package com.msg91.sendotp.sample;
 
 import android.Manifest;
 import android.content.Context;
@@ -22,12 +22,13 @@ import com.msg91.sendotpandroid.library.SendOtpVerification;
 import com.msg91.sendotpandroid.library.Verification;
 import com.msg91.sendotpandroid.library.VerificationListener;
 
+
 public class VerificationActivity extends AppCompatActivity implements
         ActivityCompat.OnRequestPermissionsResultCallback, VerificationListener {
 
     private static final String TAG = Verification.class.getSimpleName();
-    private Verification mVerification;
     TextView resend_timer;
+    private Verification mVerification;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +56,13 @@ public class VerificationActivity extends AppCompatActivity implements
                     (SendOtpVerification
                             .config(countryCode + phoneNumber)
                             .context(this)
-                            .autoVerification(true)
+                            .autoVerification(false)
+                            .httpsConnection(false)//connection to be use in network calls
+                            .expiry("5")//value in minutes
+                            .senderId("SMSIND") //where XXXX is any string
+//                            .otp("1234")// Default Otp code if want to add yours
+                            .otplength("4") //length of your otp
+                            .message("##OTP## is Your verification digits.")
                             .build(), this);
             mVerification.initiate();
         }
@@ -162,6 +169,7 @@ public class VerificationActivity extends AppCompatActivity implements
 
     @Override
     public void onVerified(String response) {
+        enableInputField(false);
         Log.d(TAG, "Verified!\n" + response);
         hideKeypad();
         hideProgressBarAndShowMessage(R.string.verified);
@@ -192,7 +200,7 @@ public class VerificationActivity extends AppCompatActivity implements
             public void onFinish() {
                 resend_timer.setClickable(true);
                 resend_timer.setText("Resend via call");
-                resend_timer.setTextColor(ContextCompat.getColor(VerificationActivity.this, R.color.colorPrimary));
+                resend_timer.setTextColor(ContextCompat.getColor(VerificationActivity.this, R.color.send_otp_blue));
             }
         }.start();
     }
@@ -203,5 +211,8 @@ public class VerificationActivity extends AppCompatActivity implements
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
+/*        Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
+        mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+        List<ResolveInfo> pkgAppsList = context.getPackageManager().queryIntentActivities(mainIntent, 0)*/
     }
 }
