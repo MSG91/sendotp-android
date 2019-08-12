@@ -92,6 +92,7 @@ Optional Parameters are gose in blow method.
                             .otplength("4") //length of your otp max length up to 9 digits
                             //--------case 1-------------------
                             .message("##OTP## is Your verification digits.")//##OTP## use for default generated OTP
+			     .environmentHost("control.msg91.com")
                           //--------case 2-------------------
                             .otp("1234")// Custom Otp code, if want to add yours
                             .message("1234 is Your verification digits.")//Here 1234 same as above Custom otp.
@@ -99,6 +100,8 @@ Optional Parameters are gose in blow method.
                             //use single case at a time either 1 or 2
                             .build(), this);
     	        mVerification.initiate();
+		
+	
 	    
 Note : Add SMS read permission for autoVerification.
 
