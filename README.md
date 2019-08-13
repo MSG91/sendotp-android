@@ -85,6 +85,7 @@ Optional Parameters are gose in blow method.
  	                   (SendOtpVerification
                             .config(countryCode + phoneNumber)
                             .context(this)
+			    .environmentHost("control.msg91.com")
                             .autoVerification(false)
                             .httpsConnection(false)//connection to be use in network calls
                             .expiry("5")//value in minutes
@@ -92,7 +93,6 @@ Optional Parameters are gose in blow method.
                             .otplength("4") //length of your otp max length up to 9 digits
                             //--------case 1-------------------
                             .message("##OTP## is Your verification digits.")//##OTP## use for default generated OTP
-			     .environmentHost("control.msg91.com")
                           //--------case 2-------------------
                             .otp("1234")// Custom Otp code, if want to add yours
                             .message("1234 is Your verification digits.")//Here 1234 same as above Custom otp.
