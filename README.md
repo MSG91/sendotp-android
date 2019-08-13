@@ -85,7 +85,7 @@ Optional Parameters are gose in blow method.
  	                   (SendOtpVerification
                             .config(countryCode + phoneNumber)
                             .context(this)
-			    .environmentHost("control.msg91.com")
+							.environmentHost("control.msg91.com")
                             .autoVerification(false)
                             .httpsConnection(false)//connection to be use in network calls
                             .expiry("5")//value in minutes
