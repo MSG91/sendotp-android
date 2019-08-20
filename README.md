@@ -86,7 +86,7 @@ Optional Parameters are gose in blow method.
  	                   (SendOtpVerification
                             .config(countryCode + phoneNumber)
                             .context(this)
-						    .unicode(false) // set true if you want to use unicode in sms
+			    .unicode(false) // set true if you want to use unicode in sms
                             .autoVerification(false)
                             .httpsConnection(false)//connection to be use in network calls
                             .expiry("5")//value in minutes
