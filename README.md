@@ -1,3 +1,4 @@
+
 SendOTP Android Sdk!
 ===================
 
@@ -16,7 +17,7 @@ Just add the "compile 'com.msg91.sendotp.library:library:3.1'" in your build.gra
 
     dependencies {
     ...
-     implementation 'com.msg91.sendotpandroid.library:library:0.4'
+     implementation 'com.msg91.sendotpandroid.library:library:0.5'
      //------------------required dependencies-----------------
     implementation 'com.squareup.okhttp3:okhttp:VERSION_OF_DEPENDENCIE' //optional
     implementation 'com.googlecode.libphonenumber:libphonenumber:VERSION_OF_DEPENDENCIE' //required
@@ -85,7 +86,7 @@ Optional Parameters are gose in blow method.
  	                   (SendOtpVerification
                             .config(countryCode + phoneNumber)
                             .context(this)
-			    .unicode(false) // set true if you want to use unicode in sms
+						    .unicode(false) // set true if you want to use unicode in sms
                             .autoVerification(false)
                             .httpsConnection(false)//connection to be use in network calls
                             .expiry("5")//value in minutes
