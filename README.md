@@ -13,7 +13,7 @@ Getting started
 Gradle
 ------
 
-Just add the "compile 'com.msg91.sendotp.library:library:3.1'" in your build.gradle of your module.
+Just add the 
 
     dependencies {
     ...
