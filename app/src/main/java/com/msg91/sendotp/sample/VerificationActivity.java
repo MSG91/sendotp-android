@@ -4,11 +4,14 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.text.format.Formatter;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -18,6 +21,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.msg91.sendotpandroid.library.IPConverter;
+import com.msg91.sendotpandroid.library.SendOTPConfig;
 import com.msg91.sendotpandroid.library.SendOtpVerification;
 import com.msg91.sendotpandroid.library.Verification;
 import com.msg91.sendotpandroid.library.VerificationListener;
@@ -57,29 +62,58 @@ public class VerificationActivity extends AppCompatActivity implements
             boolean withoutOtp = false;
             if (NetworkConnectivity.isConnectedMobileNetwork(getApplicationContext())) {
                 withoutOtp = true;
+            }else {
+
             }
-            mVerification = SendOtpVerification.createSmsVerification
-                    (SendOtpVerification
-                            .config(countryCode + phoneNumber)
-                            .context(this)
-                            .autoVerification(false)
-                            .verifyWithoutOtp(withoutOtp)
-                            .unicode(false) // set true if you want to use unicode in sms
-                            .httpsConnection(false)//connection to be use in network calls
-                            .expiry("5")//value in minutes
-                            .senderId("ABCDEF") //where XXXX is any string
-                            .otplength("6") //length of your otp max length up to 9 digits
-                            //--------case 1-------------------
+
+
+            SendOTPConfig otpConfig=     SendOtpVerification
+                    .config(countryCode + phoneNumber)
+                    .context(this)
+                    .autoVerification(false)
+                    .setIp(getIp(withoutOtp))
+                    .verifyWithoutOtp(withoutOtp)
+                    .unicode(false) // set true if you want to use unicode in sms
+                    .httpsConnection(false)//connection to be use in network calls
+                    .expiry("5")//value in minutes
+                    .senderId("ABCDEF") //where XXXX is any string
+                    .otplength("6") //length of your otp max length up to 9 digits
+                    //--------case 1-------------------
 //                            .message("##OTP## is Your verification digits.")//##OTP## use for default generated OTP
-                            //--------case 2-------------------
-                            /*  .otp("1234")// Custom Otp code, if want to add yours
-                              .message("1234 is Your verification digits.")//Here 1234 same as above Custom otp.*/
-                            //-------------------------------------
-                            //use single case at a time either 1 or 2
-                            .build(), this);
+                    //--------case 2-------------------
+                    /*  .otp("1234")// Custom Otp code, if want to add yours
+                      .message("1234 is Your verification digits.")//Here 1234 same as above Custom otp.*/
+                    //-------------------------------------
+                    //use single case at a time either 1 or 2
+                    .build();
+            mVerification = SendOtpVerification.createSmsVerification
+                    (otpConfig , this);
             mVerification.initiate();
         }
     }
+
+
+    /**
+    * This work is done  by me rajendra verma
+     * if moiblenetwork is true than device is in mobile network
+    */
+    private String getIp(boolean moibleNetwork) {
+if(moibleNetwork) {
+    try {
+
+       return IPConverter.getIPAddress(true);
+    } catch (Exception ex) {
+    }
+
+}else {
+    WifiManager wifiMgr = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
+    WifiInfo wifiInfo = wifiMgr.getConnectionInfo();
+    int ip = wifiInfo.getIpAddress();
+    return  Formatter.formatIpAddress(ip);
+}
+return "";
+    }
+
 
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
