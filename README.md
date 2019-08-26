@@ -1,4 +1,5 @@
 
+
 SendOTP Android Sdk!
 ===================
 
@@ -13,14 +14,12 @@ Getting started
 Gradle
 ------
 
-Just add the 
+Just add the
 
     dependencies {
     ...
-     implementation 'com.msg91.sendotpandroid.library:library:0.5'
-     //------------------required dependencies-----------------
-    implementation 'com.squareup.okhttp3:okhttp:VERSION_OF_DEPENDENCIE' //optional
-    implementation 'com.googlecode.libphonenumber:libphonenumber:VERSION_OF_DEPENDENCIE' //required
+     implementation 'com.msg91.sendotpandroid.library:library:0.6'
+     implementation 'com.googlecode.libphonenumber:libphonenumber:7.0.4'//required
     ...
     }
 Maven
@@ -30,11 +29,11 @@ grab via Maven:
 <dependency>
   <groupId>com.msg91.sendotpandroid.library</groupId>
   <artifactId>library</artifactId>
-  <version>0.1</version>
+  <version>0.6</version>
   <type>pom</type>
 </dependency>
 
-> -Login or create account at [MSG91](https://msg91.com/signup/sendotp) to use sendOTP services.
+> -Login or create account at [MSG91]([https://control.msg91.com/signup/sendotp](https://control.msg91.com/signup/sendotp)) to use sendOTP services.
 
 #### <i class="icon-file"></i> Get your authKey
 
@@ -101,9 +100,9 @@ Optional Parameters are gose in blow method.
                             //use single case at a time either 1 or 2
                             .build(), this);
     	        mVerification.initiate();
-		
-	
-	    
+
+
+
 Note : Add SMS read permission for autoVerification.
 
 sending OTP
@@ -117,6 +116,11 @@ resend OTP use 'voice' or 'text' as a param.
 
     mVerification.resend("voice");
 
+
+**Androidx Developers:**
+Add below code in application tag in AndroidManifest.xml file.
+
+    tools:replace="android:allowBackup"
 
 Optional Parameters
 ------
@@ -132,7 +136,7 @@ Optional Parameters
 License
 =======
 
-    Copyright 2017 MSG91
+    Copyright 2019 MSG91
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.

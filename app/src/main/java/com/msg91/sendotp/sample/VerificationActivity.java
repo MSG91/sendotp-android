@@ -1,4 +1,4 @@
-package in.walkover.sendotpsample;
+package com.msg91.sendotp.sample;
 
 import android.Manifest;
 import android.content.Context;
@@ -32,6 +32,8 @@ public class VerificationActivity extends AppCompatActivity implements
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_verification);
         resend_timer = (TextView) findViewById(R.id.resend_timer);
@@ -52,17 +54,28 @@ public class VerificationActivity extends AppCompatActivity implements
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_SMS}, 0);
             hideProgressBar();
         } else {
+            boolean withoutOtp = false;
+            if (NetworkConnectivity.isConnectedMobileNetwork(getApplicationContext())) {
+                withoutOtp = true;
+            }
             mVerification = SendOtpVerification.createSmsVerification
                     (SendOtpVerification
                             .config(countryCode + phoneNumber)
                             .context(this)
                             .autoVerification(false)
+                            .verifyWithoutOtp(withoutOtp)
+                            .unicode(false) // set true if you want to use unicode in sms
                             .httpsConnection(false)//connection to be use in network calls
                             .expiry("5")//value in minutes
-                            .senderId("SMSIND") //where XXXX is any string
-//                            .otp("1234")// Default Otp code if want to add yours
-                            .otplength("4") //length of your otp
-                            .message("##OTP## is Your verification digits.")
+                            .senderId("ABCDEF") //where XXXX is any string
+                            .otplength("6") //length of your otp max length up to 9 digits
+                            //--------case 1-------------------
+//                            .message("##OTP## is Your verification digits.")//##OTP## use for default generated OTP
+                            //--------case 2-------------------
+                            /*  .otp("1234")// Custom Otp code, if want to add yours
+                              .message("1234 is Your verification digits.")//Here 1234 same as above Custom otp.*/
+                            //-------------------------------------
+                            //use single case at a time either 1 or 2
                             .build(), this);
             mVerification.initiate();
         }
@@ -200,7 +213,7 @@ public class VerificationActivity extends AppCompatActivity implements
             public void onFinish() {
                 resend_timer.setClickable(true);
                 resend_timer.setText("Resend via call");
-                resend_timer.setTextColor(ContextCompat.getColor(VerificationActivity.this, R.color.colorPrimary));
+                resend_timer.setTextColor(ContextCompat.getColor(VerificationActivity.this, R.color.send_otp_blue));
             }
         }.start();
     }

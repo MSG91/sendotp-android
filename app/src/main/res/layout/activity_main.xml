@@ -1,9 +1,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="0dip"
-    tools:context=".MainActivity">
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="0dip"
+                tools:context=".MainActivity">
 
     <LinearLayout
         android:id="@+id/numberInputLayout"
@@ -14,7 +14,7 @@
         android:paddingLeft="40dp"
         android:paddingRight="40dp">
 
-        <in.walkover.sendotpsample.CountrySpinner
+        <com.msg91.sendotp.sample.CountrySpinner
             android:id="@+id/spinner"
             android:layout_width="255dp"
             android:layout_height="wrap_content"
@@ -28,7 +28,7 @@
             android:layout_marginTop="40dp"
             android:text="@string/enterphonenumber"
             android:textAllCaps="true"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/send_otp_blue"
             android:textSize="18sp"/>
 
         <EditText
@@ -39,7 +39,7 @@
             android:background="@drawable/inputbox"
             android:inputType="phone"
             android:padding="10dp"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/send_otp_blue"
             android:textSize="32sp">
 
             <requestFocus/>
@@ -91,7 +91,7 @@
         android:layout_gravity="center_horizontal"
         android:text="@string/selectcountry"
         android:textAllCaps="true"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/send_otp_blue"
         android:textSize="18sp"/>
 
 </RelativeLayout>

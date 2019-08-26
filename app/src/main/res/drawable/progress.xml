@@ -15,7 +15,7 @@
             android:endColor="#00ffffff"
             android:centerY="0.50"
             android:startColor="#00ffffff"
-            android:centerColor="@color/colorPrimary"
+            android:centerColor="@color/send_otp_blue"
             android:type="sweep"
             android:useLevel="false"/>
     </shape>

@@ -1,14 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
+    compileSdkVersion 28
+
     defaultConfig {
-        applicationId "in.walkover.sendotpsample"
+        applicationId "com.msg91.sendotp.sample.test"
         minSdkVersion 15
-        targetSdkVersion 25
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -17,15 +17,13 @@ android {
         }
     }
 }
-
 dependencies {
-   testImplementation 'junit:junit:4.12'
-    implementation 'com.android.support:appcompat-v7:25.4.0'
-    implementation 'com.android.support:design:25.4.0'
-//-------------------library---------------------------------
-    implementation 'com.msg91.sendotpandroid.library:library:0.4'
-//------------------required dependencies-----------------
-    implementation 'com.squareup.okhttp3:okhttp:3.11.0'
-    implementation 'com.googlecode.libphonenumber:libphonenumber:7.0.4'
+    testImplementation 'junit:junit:4.12'
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support:design:28.0.0'
+//-------------------library's---------------------------------
+    implementation 'com.msg91.sendotpandroid.library:library:0.6'//required
+    implementation 'com.googlecode.libphonenumber:libphonenumber:7.0.4'//required
 
 }
+

@@ -31,7 +31,7 @@
             android:gravity="center"
             android:text="@string/sending_sms"
             android:textAllCaps="true"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/send_otp_blue"
             android:textSize="18sp"/>
 
         <TextView
@@ -44,7 +44,7 @@
             android:hint="Enter Number"
             android:text="+46123456789"
             android:textAllCaps="true"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/send_otp_blue"
             android:textSize="18sp"/>
 
         <RelativeLayout
@@ -68,7 +68,7 @@
                     android:gravity="center"
                     android:text="@string/entercode"
                     android:textAllCaps="true"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/send_otp_blue"
                     android:textSize="18sp"/>
 
                 <EditText
