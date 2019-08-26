@@ -18,7 +18,7 @@ Just add the
 
     dependencies {
     ...
-     implementation 'com.msg91.sendotpandroid.library:library:0.6'
+     implementation 'com.msg91.sendotpandroid.library:library:0.7'
      implementation 'com.googlecode.libphonenumber:libphonenumber:7.0.4'//required
     ...
     }
