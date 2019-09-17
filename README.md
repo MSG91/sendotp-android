@@ -89,7 +89,7 @@ Optional Parameters are gose in blow method.
                             .autoVerification(false)
                             .httpsConnection(false)//connection to be use in network calls
                             .expiry("5")//value in minutes
-                            .senderId("XXXX") //where XXXX is any string
+                            .senderId("XXXXXX") //where XXXX is any string
                             .otplength("4") //length of your otp max length up to 9 digits
                             //--------case 1-------------------
                             .message("##OTP## is Your verification digits.")//##OTP## use for default generated OTP
