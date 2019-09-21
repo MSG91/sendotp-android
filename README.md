@@ -85,16 +85,13 @@ Optional Parameters are gose in blow method.
 	 mVerification = SendOtpVerification.createSmsVerification
  	                   (SendOtpVerification
                             .config(countryCode + phoneNumber)
-                    .context(this)
-                    .httpsConnection(true)//secure connections setting
-                    //////////////////direct verification while connect with mobile network/////////////////////////
-                    .autoVerification(false)
-                    .setIp(getIp(withoutOtp))
-                    .verifyWithoutOtp(withoutOtp)
-                    //////////////////////////////////////////////////////////////////////////////////////////////////
-                    .unicode(false) // set true if you want to use unicode (or other language) in sms
-                    .expiry("5")//value in minutes
-                    .senderId("ABCDEF") //where ABCDEF is any string
+
+                            .context(this)
+			    .unicode(false) // set true if you want to use unicode in sms
+                            .autoVerification(false)
+                            .httpsConnection(false)//connection to be use in network calls
+                            .expiry("5")//value in minutes
+                            .senderId("XXXXXX") //where XXXX is any string
                             .otplength("4") //length of your otp max length up to 9 digits
                             //--------case 1-------------------
                             .message("##OTP## is Your verification digits.")//##OTP## use for default generated OTP
