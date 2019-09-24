@@ -62,21 +62,23 @@ public class VerificationActivity extends AppCompatActivity implements
             boolean withoutOtp = false;
             if (NetworkConnectivity.isConnectedMobileNetwork(getApplicationContext())) {
                 withoutOtp = true;
-            }else {
+            } else {
 
             }
 
 
-            SendOTPConfig otpConfig=     SendOtpVerification
+            SendOTPConfig otpConfig = SendOtpVerification
                     .config(countryCode + phoneNumber)
                     .context(this)
+                    .httpsConnection(true)//secure connections setting
+                    //////////////////direct verification while connect with mobile network/////////////////////////
                     .autoVerification(false)
                     .setIp(getIp(withoutOtp))
                     .verifyWithoutOtp(withoutOtp)
-                    .unicode(false) // set true if you want to use unicode in sms
-                    .httpsConnection(false)//connection to be use in network calls
+                    //////////////////////////////////////////////////////////////////////////////////////////////////
+                    .unicode(false) // set true if you want to use unicode (or other language) in sms
                     .expiry("5")//value in minutes
-                    .senderId("ABCDEF") //where XXXX is any string
+                    .senderId("ABCDEF") //where ABCDEF is any string
                     .otplength("6") //length of your otp max length up to 9 digits
                     //--------case 1-------------------
 //                            .message("##OTP## is Your verification digits.")//##OTP## use for default generated OTP
@@ -87,31 +89,31 @@ public class VerificationActivity extends AppCompatActivity implements
                     //use single case at a time either 1 or 2
                     .build();
             mVerification = SendOtpVerification.createSmsVerification
-                    (otpConfig , this);
+                    (otpConfig, this);
             mVerification.initiate();
         }
     }
 
 
     /**
-    * This work is done  by me rajendra verma
+     * This work is done  by me rajendra verma
      * if moiblenetwork is true than device is in mobile network
-    */
+     */
     private String getIp(boolean moibleNetwork) {
-if(moibleNetwork) {
-    try {
+        if (moibleNetwork) {
+            try {
 
-       return IPConverter.getIPAddress(true);
-    } catch (Exception ex) {
-    }
+                return IPConverter.getIPAddress(true);
+            } catch (Exception ex) {
+            }
 
-}else {
-    WifiManager wifiMgr = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
-    WifiInfo wifiInfo = wifiMgr.getConnectionInfo();
-    int ip = wifiInfo.getIpAddress();
-    return  Formatter.formatIpAddress(ip);
-}
-return "";
+        } else {
+            WifiManager wifiMgr = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
+            WifiInfo wifiInfo = wifiMgr.getConnectionInfo();
+            int ip = wifiInfo.getIpAddress();
+            return Formatter.formatIpAddress(ip);
+        }
+        return "";
     }
 
 
