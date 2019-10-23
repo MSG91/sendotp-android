@@ -21,7 +21,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.msg91.sendotpandroid.library.IPConverter;
 import com.msg91.sendotpandroid.library.SendOTPConfig;
 import com.msg91.sendotpandroid.library.SendOtpVerification;
 import com.msg91.sendotpandroid.library.Verification;
@@ -70,7 +69,7 @@ public class VerificationActivity extends AppCompatActivity implements
             SendOTPConfig otpConfig = SendOtpVerification
                     .config(countryCode + phoneNumber)
                     .context(this)
-                    .httpsConnection(true)//secure connections setting
+                    .httpsConnection(false)//user false https is under maintenance
                     //////////////////direct verification while connect with mobile network/////////////////////////
                     .autoVerification(false)
                     .setIp(getIp(withoutOtp))
