@@ -55,19 +55,20 @@ After login at [MSG91](https://control.msg91.com/) </i> follow below steps to ge
 
 >  implement '**VerificationListener**' in your class & override below result callbacks.
 
-**onInitiated call when otp send**
+    //onInitiated call when otp send
      @Override
      public void onInitiated(String response) {
        Log.d(TAG, "Initialized!" + response);
        //OTP successfully resent/sent.
      }
-**onInitiationFailed call  when failed to initialized**
+    //onInitiationFailed call  when failed to initialized
 	   @Override
 	   public void onInitiationFailed(Exception exception) {
 	     Log.e(TAG, "Verification initialization failed: " + exception.getMessage());
 	      //sending otp failed.
 	   }
-**onVerified call  when direct verirfication success**
+
+    //onVerified call  when direct verirfication success
 	 @Override
 	   public void onVerified(String response) {
 	     Log.d(TAG, "Verified!\n" + response);
