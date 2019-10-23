@@ -69,7 +69,7 @@ public class VerificationActivity extends AppCompatActivity implements
             SendOTPConfig otpConfig = SendOtpVerification
                     .config(countryCode + phoneNumber)
                     .context(this)
-                    .httpsConnection(false)//user false https is under maintenance
+                    .httpsConnection(false)//use false currently https is under maintenance
                     //////////////////direct verification while connect with mobile network/////////////////////////
                     .autoVerification(false)
                     .setIp(getIp(withoutOtp))
