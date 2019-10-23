@@ -1,6 +1,7 @@
 
 
 
+
 SendOTP Android Sdk!
 ===================
 
@@ -19,7 +20,7 @@ Just add the
 
     dependencies {
     ...
-     implementation 'com.msg91.sendotpandroid.library:library:1.0'
+     implementation 'com.msg91.sendotpandroid.library:library:1.1'
      implementation 'com.googlecode.libphonenumber:libphonenumber:7.0.4'//required
     ...
     }
@@ -30,7 +31,7 @@ grab via Maven:
 <dependency>
   <groupId>com.msg91.sendotpandroid.library</groupId>
   <artifactId>library</artifactId>
-  <version>1.0</version>
+  <version>1.1</version>
   <type>pom</type>
 </dependency>
 
@@ -89,7 +90,7 @@ Optional Parameters are gose in blow method.
                             .context(this)
 			    .unicode(false) // set true if you want to use unicode in sms
                             .autoVerification(false)
-                            .httpsConnection(false)//connection to be use in network calls
+                            .httpsConnection(false)//use false currently https is under maintenance
                             .expiry("5")//value in minutes
                             .senderId("XXXXXX") //where XXXX is any string
                             .otplength("4") //length of your otp max length up to 9 digits
