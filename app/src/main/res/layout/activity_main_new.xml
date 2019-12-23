@@ -1,0 +1,126 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_bg"
+    android:padding="0dip"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:id="@+id/numberInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginTop="60dp"
+        android:orientation="vertical"
+
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_sendotp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="SendOTP"
+            android:textColor="@color/white"
+            android:textSize="20dp" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/inputbox_new"
+            android:orientation="horizontal">
+
+            <com.msg91.sendotp.sample.CountrySpinner
+                android:id="@+id/spinner"
+                style="@style/SpinnerTheme"
+                android:layout_width="255dp"
+                android:layout_height="wrap_content"
+                android:prompt="@string/selectcountry"
+                android:layout_gravity="center_horizontal" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/phoneNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/inputbox_new"
+            android:hint="@string/enter_your_mobile_number"
+            android:inputType="phone"
+            android:padding="10dp"
+            android:textColor="@color/send_otp_blue"
+            android:textColorHint="@color/white_trans"
+            android:textSize="16sp">
+
+            <requestFocus />
+        </EditText>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <TextView
+                android:id="@+id/smsVerificationButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight=".5"
+                android:background="@drawable/rounded_corner"
+                android:gravity="center"
+                android:onClick="onButtonClicked"
+                android:padding="10dp"
+                android:text="Verify Mobile"
+                android:textAllCaps="false"
+                android:textColor="#1A79CC"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical"
+        android:paddingStart="40dp"
+        android:paddingEnd="40dp"
+        android:visibility="gone">
+
+        <Button
+            android:id="@+id/smsVerificationButton1"
+            android:layout_width="fill_parent"
+            android:layout_height="60dp"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/button_blue_generic"
+            android:minWidth="132dp"
+            android:minHeight="56dp"
+            android:onClick="onButtonClicked"
+            android:text="SMS Verification"
+            android:textAllCaps="true"
+            android:textColor="#ffffff"
+            android:textSize="20sp" />
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

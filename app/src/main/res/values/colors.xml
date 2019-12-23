@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="white">#FFFFFF</color>
+    <color name="white_trans">#88FFFFFF</color>
     <color name="send_otp_blue">#156BB3</color>
     <color name="send_otp_blue_dark">#06599e</color>
     <color name="sendotp_grey">#636363</color>

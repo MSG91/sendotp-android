@@ -18,6 +18,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -220,6 +221,18 @@ public class VerificationActivity extends AppCompatActivity implements
         enableInputField(false);
         Log.d(TAG, "Verified!\n" + response);
         hideKeypad();
+        TextView textView2 = (TextView) findViewById(R.id.textView2);
+        TextView textView1 = (TextView) findViewById(R.id.textView1);
+        TextView messageText = (TextView) findViewById(R.id.textView);
+        ImageView topImg = (ImageView) findViewById(R.id.topImg);
+        TextView phoneText = (TextView) findViewById(R.id.numberText);
+        RelativeLayout topLayout  = findViewById(R.id.topLayout);
+        topLayout.setBackgroundDrawable(ContextCompat.getDrawable(this,R.drawable.gradient_bg_white));
+        messageText.setVisibility(View.GONE);
+        phoneText.setVisibility(View.GONE);
+        topImg.setVisibility(View.INVISIBLE);
+        textView1.setVisibility(View.VISIBLE);
+        textView2.setVisibility(View.VISIBLE);
         hideProgressBarAndShowMessage(R.string.verified);
         showCompleted();
     }
@@ -234,7 +247,7 @@ public class VerificationActivity extends AppCompatActivity implements
 
     private void startTimer() {
         resend_timer.setClickable(false);
-        resend_timer.setTextColor(ContextCompat.getColor(VerificationActivity.this, R.color.sendotp_grey));
+        resend_timer.setTextColor(ContextCompat.getColor(VerificationActivity.this, R.color.white));
         new CountDownTimer(30000, 1000) {
             int secondsLeft = 0;
 

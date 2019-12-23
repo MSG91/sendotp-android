@@ -10,5 +10,9 @@
     <string name="verified">Verification successful</string>
     <string name="failed">Verification failed</string>
     <string name="entercode">Please enter the code you received</string>
+    <string name="enter_your_mobile_number">Enter your mobile number</string>
+    <string name="hi">Hi!</string>
+    <string name="proceed">Proceed</string>
+    <string name="successful">Successful!</string>
 
 </resources>

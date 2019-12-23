@@ -14,6 +14,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.msg91.sendotpandroid.library.PhoneNumberFormattingTextWatcher;
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
   public static final String INTENT_COUNTRY_CODE = "code";
 
   private EditText mPhoneNumber;
-  private Button mSmsButton;
+  private TextView mSmsButton;
   private String mCountryIso;
   private TextWatcher mNumberTextWatcher;
 
@@ -36,10 +37,9 @@ public class MainActivity extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
-    setContentView(R.layout.activity_main);
-
-    mPhoneNumber = (EditText) findViewById(R.id.phoneNumber);
-    mSmsButton = (Button) findViewById(R.id.smsVerificationButton);
+    setContentView(R.layout.activity_main_new);
+    mPhoneNumber =  findViewById(R.id.phoneNumber);
+    mSmsButton =  findViewById(R.id.smsVerificationButton);
 
     mCountryIso = PhoneNumberUtils.getDefaultCountryIso(this);
     final String defaultCountryName = new Locale("", mCountryIso).getDisplayName();
@@ -118,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
         super.afterTextChanged(s);
         if (isPossiblePhoneNumber()) {
           setButtonsEnabled(true);
-          mPhoneNumber.setTextColor(Color.BLACK);
+          mPhoneNumber.setTextColor(Color.WHITE);
         } else {
           setButtonsEnabled(false);
           mPhoneNumber.setTextColor(Color.RED);
