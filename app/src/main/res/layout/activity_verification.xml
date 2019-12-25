@@ -87,7 +87,7 @@
                     android:layout_gravity="center"
                     android:background="@drawable/inputbox_new"
                     android:textColor="@color/white"
-                    android:maxLength="6"
+                    android:maxLength="4"
                     android:textSize="20sp"
                     android:textIsSelectable="false"
                     android:padding="20dp"
@@ -176,7 +176,7 @@
                 android:gravity="center"
                 android:visibility="invisible"
                 android:layout_below="@+id/textView1"
-                android:text="Your Mobile number has been \nsuccessfully verified"
+                android:text="Your Mobile number has been \nsuccessfully verified."
                 android:textAllCaps="false"
                 android:textColor="#555555"
                 android:textSize="14sp"/>

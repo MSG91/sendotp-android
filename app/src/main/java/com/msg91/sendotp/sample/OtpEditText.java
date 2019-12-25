@@ -12,12 +12,24 @@ import android.view.View;
 
 public class OtpEditText extends AppCompatEditText {
     private float mSpace = 10; //24 dp by default, space between the lines
-    private float mNumChars = 6;
+    private float mNumChars = 4;
     private float mLineSpacing = 4; //8dp by default, height of the text from our lines
-    private int mMaxLength = 6;
+
+    public int getMaxLength() {
+        return mMaxLength;
+    }
+
+    public void setMaxLength(int maxLength) {
+        mNumChars = mMaxLength = maxLength;
+        if(canvas!=null)
+        drawMethod(canvas);
+    }
+
+    public int mMaxLength = 4;
     private float mLineStroke = 2;
     private Paint mLinesPaint;
     private View.OnClickListener mClickListener;
+    private Canvas canvas;
 
     public OtpEditText(Context context) {
         super(context);
@@ -68,6 +80,11 @@ public class OtpEditText extends AppCompatEditText {
 
     @Override
     protected void onDraw(Canvas canvas) {
+        this.canvas = canvas;
+        drawMethod(canvas);
+    }
+
+    private void drawMethod(Canvas canvas) {
         int availableWidth = getWidth() - getPaddingRight() - getPaddingLeft();
         float mCharSize;
         if (mSpace < 0) {

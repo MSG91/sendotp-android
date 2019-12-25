@@ -33,8 +33,10 @@ public class VerificationActivity extends AppCompatActivity implements
 
     private static final String TAG = Verification.class.getSimpleName();
     TextView resend_timer;
+    private boolean isDirect = true;
     private Verification mVerification;
-
+private  OtpEditText mOtpEditText;
+private static final int OTP_LNGTH = 4;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -49,6 +51,8 @@ public class VerificationActivity extends AppCompatActivity implements
             }
         });
         startTimer();
+        mOtpEditText =  findViewById(R.id.inputCode);
+        mOtpEditText.setMaxLength(OTP_LNGTH);
         enableInputField(true);
         initiateVerification();
     }
@@ -57,7 +61,7 @@ public class VerificationActivity extends AppCompatActivity implements
         if (!skipPermissionCheck && ContextCompat.checkSelfPermission(this, Manifest.permission.READ_SMS) ==
                 PackageManager.PERMISSION_DENIED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_SMS}, 0);
-            hideProgressBar();
+            DataManaer.getInstance().hideProgressMessage();
         } else {
             boolean withoutOtp = false;
             if (NetworkConnectivity.isConnectedMobileNetwork(getApplicationContext())) {
@@ -79,7 +83,7 @@ public class VerificationActivity extends AppCompatActivity implements
                     .unicode(false) // set true if you want to use unicode (or other language) in sms
                     .expiry("5")//value in minutes
                     .senderId("ABCDEF") //where ABCDEF is any string
-                    .otplength("6") //length of your otp max length up to 9 digits
+                    .otplength(String.valueOf(OTP_LNGTH)) //length of your otp max length up to 9 digits
                     //--------case 1-------------------
 //                            .message("##OTP## is Your verification digits.")//##OTP## use for default generated OTP
                     //--------case 2-------------------
@@ -142,6 +146,7 @@ public class VerificationActivity extends AppCompatActivity implements
     void initiateVerification(boolean skipPermissionCheck) {
         Intent intent = getIntent();
         if (intent != null) {
+            DataManaer.getInstance().showProgressMessage(this,"");
             String phoneNumber = intent.getStringExtra(MainActivity.INTENT_PHONENUMBER);
             String countryCode = intent.getStringExtra(MainActivity.INTENT_COUNTRY_CODE);
             TextView phoneText = (TextView) findViewById(R.id.numberText);
@@ -156,12 +161,12 @@ public class VerificationActivity extends AppCompatActivity implements
     }
 
     public void onSubmitClicked(View view) {
-        String code = ((EditText) findViewById(R.id.inputCode)).getText().toString();
+        String code = mOtpEditText.getText().toString();
         if (!code.isEmpty()) {
             hideKeypad();
             if (mVerification != null) {
                 mVerification.verify(code);
-                showProgress();
+                DataManaer.getInstance().showProgressMessage(this,"");
                 TextView messageText = (TextView) findViewById(R.id.textView);
                 messageText.setText("Verification in progress");
                 enableInputField(false);
@@ -173,8 +178,7 @@ public class VerificationActivity extends AppCompatActivity implements
         View container = findViewById(R.id.inputContainer);
         if (enable) {
             container.setVisibility(View.VISIBLE);
-            EditText input = (EditText) findViewById(R.id.inputCode);
-            input.requestFocus();
+            mOtpEditText.requestFocus();
         } else {
             container.setVisibility(View.GONE);
         }
@@ -202,22 +206,31 @@ public class VerificationActivity extends AppCompatActivity implements
 
     void showCompleted() {
         ImageView checkMark = (ImageView) findViewById(R.id.checkmarkImage);
+        if(isDirect){
+            checkMark.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_magic));
+        }else {
+            checkMark.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_checkmark));
+        }
         checkMark.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void onInitiated(String response) {
         Log.d(TAG, "Initialized!" + response);
+        isDirect = false;
+        DataManaer.getInstance().hideProgressMessage();
     }
 
     @Override
     public void onInitiationFailed(Exception exception) {
+        DataManaer.getInstance().hideProgressMessage();
         Log.e(TAG, "Verification initialization failed: " + exception.getMessage());
         hideProgressBarAndShowMessage(R.string.failed);
     }
 
     @Override
     public void onVerified(String response) {
+        DataManaer.getInstance().hideProgressMessage();
         enableInputField(false);
         Log.d(TAG, "Verified!\n" + response);
         hideKeypad();
@@ -233,12 +246,17 @@ public class VerificationActivity extends AppCompatActivity implements
         topImg.setVisibility(View.INVISIBLE);
         textView1.setVisibility(View.VISIBLE);
         textView2.setVisibility(View.VISIBLE);
+        if(isDirect)
+        textView2.setText("Mobile verified using Invisible OTP.");
+       else textView2.setText("Your Mobile number has been successfully verified.");
+
         hideProgressBarAndShowMessage(R.string.verified);
         showCompleted();
     }
 
     @Override
     public void onVerificationFailed(Exception exception) {
+        DataManaer.getInstance().hideProgressMessage();
         Log.e(TAG, "Verification failed: " + exception.getMessage());
         hideKeypad();
         hideProgressBarAndShowMessage(R.string.failed);
