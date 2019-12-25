@@ -142,7 +142,7 @@ Optional Parameters
 >setIp(getIp(withoutOtp))
 >verifyWithoutOtp(withoutOtp) obtain details are mention in sample code
 
-<img src="https://cloud.githubusercontent.com/assets/8371249/13195073/bcf22e40-d7cd-11e5-9891-f1f656d9ff45.png" width="270">    <img src="https://cloud.githubusercontent.com/assets/8371249/13195075/bcf7b6b2-d7cd-11e5-8e58-0a0c8e8849de.png" width="270">  <img src="https://cloud.githubusercontent.com/assets/8371249/13195074/bcf257f8-d7cd-11e5-970e-78ee034df112.png" width="270">
+<img src="https://user-images.githubusercontent.com/47854558/71350020-5c2d0d80-2596-11ea-8ba8-0bfca83b3602.png" width="270">    <img src="https://user-images.githubusercontent.com/47854558/71351134-ec6c5200-2598-11ea-8da3-b38c88c02dcd.png" width="270">  <img src="https://user-images.githubusercontent.com/47854558/71350022-5c2d0d80-2596-11ea-9b77-3aa2d0a53e8f.png" width="270">
 
 License
 =======
