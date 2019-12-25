@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">SendOTP</string>
-    <string name="sendotp_key">155344AsGCm17GVss5937f54b</string>
+    <string name="sendotp_key">ENTER KEY HERE</string>
     <string name="enterphonenumber">Enter your phone number</string>
     <string name="selectcountry">Select country</string>
     <string name="sending_sms">We\'re sending an sms to</string>
