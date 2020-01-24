@@ -2,6 +2,7 @@
 
 
 
+
 SendOTP Android Sdk!
 ===================
 
@@ -85,28 +86,44 @@ After login at [MSG91](https://control.msg91.com/) </i> follow below steps to ge
 create instance of **Verification** as a class variable and `initialise` it by passing country code and mobile number.
 Optional Parameters are gose in blow method.
 
-	 mVerification = SendOtpVerification.createSmsVerification
- 	                   (SendOtpVerification
-                            .config(countryCode + phoneNumber)
+    mVerification = SendOtpVerification.createSmsVerification
+     (SendOtpVerification
+	    .config(countryCode + phoneNumber)
+	    .context(this)// class or fragment context
+	    .expiry("5")//value in minutes
+	    .senderId("XXXXXX") //where XXXX is any string
+	    .otplength("4") //length of your otp max length up to 9 digits
+	    .build(), this);
+     mVerification.initiate();
 
-                            .context(this)
-			    .unicode(false) // set true if you want to use unicode in sms
-                            .autoVerification(false)
-                            .httpsConnection(false)//use false currently https is under maintenance
-                            .expiry("5")//value in minutes
-                            .senderId("XXXXXX") //where XXXX is any string
-                            .otplength("4") //length of your otp max length up to 9 digits
-                            //--------case 1-------------------
-                            .message("##OTP## is Your verification digits.")//##OTP## use for default generated OTP
-                          //--------case 2-------------------
-                            .otp("1234")// Custom Otp code, if want to add yours
-                            .message("1234 is Your verification digits.")//Here 1234 same as above Custom otp.
-                            //-------------------------------------
-                            //use single case at a time either 1 or 2
-                            .build(), this);
-    	        mVerification.initiate();
+**Auto verification** : when Application connected with mobile network mobile number will be auto verify without using sms.
 
+    boolean withoutOtp = false;  
+    if (NetworkConnectivity.isConnectedMobileNetwork(getApplicationContext())) {  
+    withoutOtp = true;  
+    }
+and use parameters
 
+    .setIp(getIp(withoutOtp))  
+    .verifyWithoutOtp(withoutOtp)
+    
+**customize message text** : 
+##OTP##  is use for default OTP genrated from sdk
+
+    .message("##OTP## is Your verification digits.")
+**OR**
+genrate your otp and set in parameter
+
+    String OTP = "1234";
+
+and use blow method
+
+    .otp(OTP )
+    .message(OTP +" is Your verification digits.")
+
+**Unicode** : To show unicode sms set true in unicode parameter. 
+
+    .unicode(true)
 
 Note : Add SMS read permission for autoVerification.
 
@@ -130,7 +147,6 @@ Add below code in application tag in AndroidManifest.xml file.
 Optional Parameters
 ------
 > - **message**("##OTP## with your Custom OTP message.") [for custom OTP message]
->- **httpsConnection**(true) [secure connection]
 >- **expiry**(5) [value in minutes]
 >- **senderId**("OTPSMS")
 >- **otp**("1234") [use your OTP code]
@@ -147,7 +163,7 @@ Optional Parameters
 License
 =======
 
-    Copyright 2019 MSG91
+    Copyright 2020 MSG91
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
