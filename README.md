@@ -90,6 +90,7 @@ Optional Parameters are gose in blow method.
      (SendOtpVerification
 	    .config(countryCode + phoneNumber)
 	    .context(this)// class or fragment context
+	    .httpsConnection(false)
 	    .expiry("5")//value in minutes
 	    .senderId("XXXXXX") //where XXXX is any string
 	    .otplength("4") //length of your otp max length up to 9 digits
