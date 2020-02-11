@@ -106,14 +106,7 @@ Optional Parameters are gose in blow method.
             .setOtpLength(OTP_LNGTH);  
     SendOTP.getInstance().setConfig(builder, this);
 
-**onDestroy**
-
-    @Override  
-    protected void onDestroy() {  
-        super.onDestroy();  
-        SendOTP.getInstance().getTrigger().stop();  
-    }
-    
+ 
 **sending OTP** to Number by using above configuration.
 
     SendOTP.getInstance().getTrigger().initiate();
@@ -129,7 +122,14 @@ manually **verifying OTP**
 
     SendOTP.getInstance().getTrigger().resend(RetryType.TEXT);
 
+**onDestroy**
 
+    @Override  
+    protected void onDestroy() {  
+        super.onDestroy();  
+        SendOTP.getInstance().getTrigger().stop();  
+    }
+   
 
 
 **customize message text** : 
@@ -148,7 +148,7 @@ and use blow method
 
 **Unicode** : To show unicode sms set true in unicode parameter. 
 
-    .unicode(true)
+    .setUnicodeEnable(true)
 
 
 
