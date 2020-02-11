@@ -1,6 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">SendOTPSample</string>
-    <string name="sendotp_key">your_sendotp_key</string>
+
+    <string name="app_name">SendOTP</string>
+    <string name="sendotp_key">ENTER KEY HERE</string>
     <string name="enterphonenumber">Enter your phone number</string>
     <string name="selectcountry">Select country</string>
     <string name="sending_sms">We\'re sending an sms to</string>
@@ -8,4 +10,9 @@
     <string name="verified">Verification successful</string>
     <string name="failed">Verification failed</string>
     <string name="entercode">Please enter the code you received</string>
+    <string name="enter_your_mobile_number">Enter your mobile number</string>
+    <string name="hi">Hi!</string>
+    <string name="proceed">Proceed</string>
+    <string name="successful">Successful!</string>
+
 </resources>

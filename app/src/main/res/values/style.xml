@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+     
+        
+
+    <style name="MyMaterialTheme" parent="MyMaterialTheme.Base">
+         
+            
+    </style>
+     
+        
+
+    <style name="MyMaterialTheme.Base" parent="Theme.AppCompat.Light.DarkActionBar">
+                
+        <item name="windowNoTitle">true</item>
+                
+        <item name="windowActionBar">false</item>
+                
+        <item name="colorPrimary">@color/send_otp_blue</item>
+                
+        <item name="colorPrimaryDark">@color/send_otp_blue_dark</item>
+                
+        <item name="colorAccent">@color/colorAccent</item>
+            
+    </style>
+     <style name="SpinnerTheme" parent="android:Widget.Spinner">
+    <item name="android:background">@drawable/bg_spinner</item>
+</style>
+</resources>
