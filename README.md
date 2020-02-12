@@ -4,7 +4,7 @@
 
 
 
-SendOTP Android Sdk! (Androidx)
+SendOTP Android Sdk!
 ===================
 **This version is for Androidx And Above:**
 
@@ -51,7 +51,7 @@ After login at [MSG91](https://control.msg91.com/) </i> follow below steps to ge
 
     android{
      defaultConfig{
-        buildConfigField"String","SEND_OTP_KEY",'"ADD_YOUR_KEY_HERE"'
+        buildConfigField "String", "SEND_OTP_KEY",'"ADD_YOUR_KEY_HERE"'
       }
     }
 

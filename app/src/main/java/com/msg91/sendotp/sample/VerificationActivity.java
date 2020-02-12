@@ -51,20 +51,16 @@ public class VerificationActivity extends AppCompatActivity implements
     }
 
     void createVerification(String phoneNumber, int countryCode) {
-        SendOTPConfigBuilder builder = new SendOTPConfigBuilder();
-        builder.setCountryCode(countryCode)
+        new SendOTPConfigBuilder()
+                .setCountryCode(countryCode)
                 .setMobileNumber(phoneNumber)
-                //////////////////direct verification while connect with mobile network/////////////////////////
-                .setVerifyWithoutOtp(true)
-                //////////////////Auto read otp from Sms And Verify///////////////////////////
-                .setAutoVerification(VerificationActivity.this)
-                .setOtpExpireInMinute(5)//default value is one day
-                .setOtpHits(3) //number of otp request per number
-                .setOtpHitsTimeOut(0L)//number of otp request time out reset in milliseconds default is 24 hours
+                .setVerifyWithoutOtp(true)//direct verification while connect with mobile network
+                .setAutoVerification(VerificationActivity.this)//Auto read otp from Sms And Verify
                 .setSenderId("ABCDEF")
                 .setMessage("##OTP## is Your verification digits.")
-                .setOtpLength(OTP_LNGTH);
-        SendOTP.getInstance().setConfig(builder, this);
+                .setOtpLength(OTP_LNGTH)
+                .setVerificationCallBack(this).build();
+
         SendOTP.getInstance().getTrigger().initiate();
 
 
