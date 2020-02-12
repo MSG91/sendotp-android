@@ -148,7 +148,7 @@ and use blow method
 
 **Unicode** : To show unicode sms set true in unicode parameter.
 
-    .unicode(true)
+    .setUnicodeEnable(true)
 
 
 
