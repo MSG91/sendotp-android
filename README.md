@@ -22,7 +22,7 @@ Just add the
 
     dependencies {
     ...
-     implementation 'com.msg91.sendotpandroid.library:library:1.2-beta'
+     implementation 'com.msg91.sendotpandroid.library:library:1.2-beta3'
     ...
     }
 Maven
@@ -32,7 +32,7 @@ grab via Maven:
 <dependency>
   <groupId>com.msg91.sendotpandroid.library</groupId>
   <artifactId>library</artifactId>
-  <version>1.2-beta</version>
+  <version>1.2-beta3</version>
   <type>pom</type>
 </dependency>
 
