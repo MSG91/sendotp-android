@@ -6,7 +6,7 @@
 
 SendOTP Android Sdk!
 ===================
-**This version is for Androidx And Above:**
+**This Library Supports Androidx and older versions up to (SDK-16):**
 
 The  **SendOtp** Verification SDK makes verifying phone numbers easy. SDK supports the verification of phone numbers via **SMS & Calls**.
 
@@ -22,7 +22,7 @@ Just add the
 
     dependencies {
     ...
-     implementation 'com.msg91.sendotpandroid.library:library:1.2-beta1'
+     implementation 'com.msg91.sendotpandroid.library:library:1.2-beta'
     ...
     }
 Maven
@@ -32,7 +32,7 @@ grab via Maven:
 <dependency>
   <groupId>com.msg91.sendotpandroid.library</groupId>
   <artifactId>library</artifactId>
-  <version>1.2-beta1</version>
+  <version>1.2-beta</version>
   <type>pom</type>
 </dependency>
 
@@ -51,7 +51,7 @@ After login at [MSG91](https://control.msg91.com/) </i> follow below steps to ge
 
     android{
      defaultConfig{
-        buildConfigField "String", "SEND_OTP_KEY",'"ADD_YOUR_KEY_HERE"'
+        buildConfigField"String","SEND_OTP_KEY",'"ADD_YOUR_KEY_HERE"'
       }
     }
 
@@ -94,20 +94,18 @@ After login at [MSG91](https://control.msg91.com/) </i> follow below steps to ge
 Build Your requirements by initialize builder with pass country code and mobile number.
 Optional Parameters are gose in blow method.
 
-    SendOTPConfigBuilder builder = new SendOTPConfigBuilder();
-    builder.setCountryCode(countryCode)
+    new SendOTPConfigBuilder()
+            .setCountryCode(countryCode)
             .setMobileNumber(phoneNumber)
-            =======direct verification while connect with mobile network=======
-			.setVerifyWithoutOtp(true)
-            =======Auto read otp from Sms And Verify=======
-			.setAutoVerification(VerificationActivity.this)
+            .setVerifyWithoutOtp(true)//direct verification while connect with mobile network
+			.setAutoVerification(VerificationActivity.this)//Auto read otp from Sms And Verify
 			.setSenderId("ABCDEF")
             .setMessage("##OTP## is Your verification digits.")
-            .setOtpLength(OTP_LNGTH);
-    SendOTP.getInstance().setConfig(builder, this);
+            .setOtpLength(OTP_LNGTH)
+            .setVerificationCallBack(this).build();
 
 
-**sending OTP** to Number by using above configuration.
+**Sending OTP / StartVerification** to Number by using above configuration.
 
     SendOTP.getInstance().getTrigger().initiate();
 
@@ -133,6 +131,7 @@ manually **verifying OTP**
 
 
 **customize message text** :
+
 ##OTP##  is use for default OTP genrated from sdk
 
     .message("##OTP## is Your verification digits.")
@@ -148,10 +147,13 @@ and use blow method
 
 **Unicode** : To show unicode sms set true in unicode parameter.
 
-    .setUnicodeEnable(true)
+    .unicode(true)
 
+## NoN Androidx user: (SdkVersion 16 to  28)
+Add blow line in gradle.properties while using this library
 
-
+    android.useAndroidX=true
+    android.enableJetifier=true
 
 
 Optional Parameters
