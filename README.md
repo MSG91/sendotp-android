@@ -3,10 +3,9 @@
 
 
 
-
-SendOTP Android Sdk! (Androidx)
+SendOTP Android Sdk!
 ===================
-**This version is for Androidx And Above:**
+
 
 The  **SendOtp** Verification SDK makes verifying phone numbers easy. SDK supports the verification of phone numbers via **SMS & Calls**.
 
@@ -22,7 +21,8 @@ Just add the
 
     dependencies {
     ...
-     implementation 'com.msg91.sendotpandroid.library:library:1.2-beta1'
+     implementation 'com.msg91.sendotpandroid.library:library:1.1'
+     implementation 'com.googlecode.libphonenumber:libphonenumber:7.0.4'//required
     ...
     }
 Maven
@@ -32,7 +32,7 @@ grab via Maven:
 <dependency>
   <groupId>com.msg91.sendotpandroid.library</groupId>
   <artifactId>library</artifactId>
-  <version>1.2-beta1</version>
+  <version>1.1</version>
   <type>pom</type>
 </dependency>
 
@@ -47,91 +47,66 @@ After login at [MSG91](https://control.msg91.com/) </i> follow below steps to ge
 
 > - Select **API** option available on panel.
 > - If you are first time user then generate new authkey.
-> - copy authKey & keep it enable, gradle under defaultConfig.
-
-    android{
-     defaultConfig{
-        buildConfigField"String","SEND_OTP_KEY",'"ADD_YOUR_KEY_HERE"'
-      }
-    }
+> - copy authKey & keep it enable, Paste in manifest under application tag.
+> `  <meta-data
+            android:name="sendotp.key"
+            android:value="@string/sendotp_key" />`
 
 #### <i class="icon-book"></i> Usage
 
->  initialize'**SendOTP**' in your Application class.
->  
-  
-    public class ApplicationClass extends Application {  
-        @Override  
-      public void onCreate() {  
-            super.onCreate();  
-            SendOTP.initializeApp(this);  //initialization
-        }  
-    }
+>  implement '**VerificationListener**' in your class & override below result callbacks.
 
->  implement '**VerificationListener**' in your class & override below result callback.
+    //onInitiated call when otp send
+     @Override
+     public void onInitiated(String response) {
+       Log.d(TAG, "Initialized!" + response);
+       //OTP successfully resent/sent.
+     }
+    //onInitiationFailed call  when failed to initialized
+	   @Override
+	   public void onInitiationFailed(Exception exception) {
+	     Log.e(TAG, "Verification initialization failed: " + exception.getMessage());
+	      //sending otp failed.
+	   }
 
-    @Override  
-	public void onSendOtpResponse(final SendOTPResponseCode responseCode, final String message) {  
-    runOnUiThread(new Runnable() {  
-        @Override  
-	  public void run() {  
-            Log.e(TAG, "onSendOtpResponse: " + responseCode.getCode() + "=======" + message);  
-            if (responseCode == SendOTPResponseCode.DIRECT_VERIFICATION_SUCCESSFUL_FOR_NUMBER || responseCode == SendOTPResponseCode.OTP_VERIFIED) {  
-                //otp verified OR direct verified by send otp 2.O  
-		    } else if (responseCode == SendOTPResponseCode.READ_OTP_SUCCESS) {  
-                //Auto read otp from sms successfully  
-			   // you can get otp form message filled  
-		    } else if (responseCode == SendOTPResponseCode.SMS_SUCCESSFUL_SEND_TO_NUMBER || responseCode == SendOTPResponseCode.DIRECT_VERIFICATION_FAILED_SMS_SUCCESSFUL_SEND_TO_NUMBER) 
-		    {  
-                // Otp send to number successfully  
-			} else {  
-                //exception found  
-			}  
-        }  
-	 });  
-	}
+    //onVerified call  when direct verirfication success
+	 @Override
+	   public void onVerified(String response) {
+	     Log.d(TAG, "Verified!\n" + response);
+	        //OTP verified successfully.
+	   }
 
-Build Your requirements by initialize builder with pass country code and mobile number.
+	   @Override
+	   public void onVerificationFailed(Exception exception) {
+	     Log.e(TAG, "Verification failed: " + exception.getMessage());
+	     //OTP  verification failed.
+	   }
+
+
+create instance of **Verification** as a class variable and `initialise` it by passing country code and mobile number.
 Optional Parameters are gose in blow method.
 
-    SendOTPConfigBuilder builder = new SendOTPConfigBuilder();  
-    builder.setCountryCode(countryCode)  
-            .setMobileNumber(phoneNumber)  
-            =======direct verification while connect with mobile network=======  
-			.setVerifyWithoutOtp(true)  
-            =======Auto read otp from Sms And Verify======= 
-			.setAutoVerification(VerificationActivity.this)  
-			.setSenderId("ABCDEF")  
-            .setMessage("##OTP## is Your verification digits.")  
-            .setOtpLength(OTP_LNGTH);  
-    SendOTP.getInstance().setConfig(builder, this);
+    mVerification = SendOtpVerification.createSmsVerification
+     (SendOtpVerification
+	    .config(countryCode + phoneNumber)
+	    .context(this)// class or fragment context
+	    .expiry("5")//value in minutes
+	    .senderId("XXXXXX") //where XXXX is any string
+	    .otplength("4") //length of your otp max length up to 9 digits
+	    .build(), this);
+     mVerification.initiate();
 
- 
-**sending OTP** to Number by using above configuration.
+**Auto verification** : when Application connected with mobile network mobile number will be auto verify without using sms.
 
-    SendOTP.getInstance().getTrigger().initiate();
-
-manually **verifying OTP**
-
-    SendOTP.getInstance().getTrigger().verify(otp);
-**resend OTP** by voice or text .
-
-    SendOTP.getInstance().getTrigger().resend(RetryType.VOICE);
-   **OR**
-   
-
-    SendOTP.getInstance().getTrigger().resend(RetryType.TEXT);
-
-**onDestroy**
-
-    @Override  
-    protected void onDestroy() {  
-        super.onDestroy();  
-        SendOTP.getInstance().getTrigger().stop();  
+    boolean withoutOtp = false;  
+    if (NetworkConnectivity.isConnectedMobileNetwork(getApplicationContext())) {  
+    withoutOtp = true;  
     }
-   
+and use parameters
 
-
+    .setIp(getIp(withoutOtp))  
+    .verifyWithoutOtp(withoutOtp)
+    
 **customize message text** : 
 ##OTP##  is use for default OTP genrated from sdk
 
@@ -148,25 +123,41 @@ and use blow method
 
 **Unicode** : To show unicode sms set true in unicode parameter. 
 
-    .setUnicodeEnable(true)
+    .unicode(true)
+
+Note : Add SMS read permission for autoVerification.
+
+sending OTP
+
+    mVerification.initiate();
+
+manually verifying OTP
+
+    mVerification.verify(otp_code);
+resend OTP use 'voice' or 'text' as a param.
+
+    mVerification.resend("voice");
 
 
+**Androidx Developers:**
+Add below code in application tag in AndroidManifest.xml file.
 
-
+    tools:replace="android:allowBackup"
 
 Optional Parameters
 ------
-> - **setMessage**("##OTP## with your Custom OTP message.") [for custom OTP message]
->- **setOtpExpireInMinute**(5) [long param ,default value is one day]
->- **setSenderId**("SENDOTP")
->- **setOtp**("1234") [use your OTP code]
->- **setOtpLength**("4") [custom OTP length]
->- **setUnicodeEnable**(false) [use unicode (or other languages)]
->- **setVerifyWithoutOtp** (true) [direct verification while connect with mobile network]
->- **setOtpHits** (5) [number of otp request per number]
->- **setOtpHitsTimeOut** (0L) [number of otp request time out reset in milliseconds default is 24 hours]
->- **setAutoVerification** (ActivityContext_here) [number of otp request per number]
->
+> - **message**("##OTP## with your Custom OTP message.") [for custom OTP message]
+>- **expiry**(5) [value in minutes]
+>- **senderId**("OTPSMS")
+>- **otp**("1234") [use your OTP code]
+>- **otplength**("4") [custom OTP length]
+>- **unicode**(false) [use unicode (or other languages)]
+>**Auto Verification** direct verification while connect with mobile network without enters otp
+>three parameter required in that case :
+>autoVerification(false)
+>setIp(getIp(withoutOtp))
+>verifyWithoutOtp(withoutOtp) obtain details are mention in sample code
+
 <img src="https://user-images.githubusercontent.com/47854558/71350020-5c2d0d80-2596-11ea-8ba8-0bfca83b3602.png" width="270">    <img src="https://user-images.githubusercontent.com/47854558/71351134-ec6c5200-2598-11ea-8da3-b38c88c02dcd.png" width="270">  <img src="https://user-images.githubusercontent.com/47854558/71350022-5c2d0d80-2596-11ea-9b77-3aa2d0a53e8f.png" width="270">
 
 License
