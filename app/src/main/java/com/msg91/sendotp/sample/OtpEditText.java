@@ -29,7 +29,7 @@ public class OtpEditText extends AppCompatEditText {
     public int mMaxLength = 4;
     private float mLineStroke = 2;
     private Paint mLinesPaint;
-    private OnClickListener mClickListener;
+    private View.OnClickListener mClickListener;
     private Canvas canvas;
 
     public OtpEditText(Context context) {
@@ -57,7 +57,7 @@ public class OtpEditText extends AppCompatEditText {
         mLineSpacing = multi * mLineSpacing; //convert to pixels for our density
         mNumChars = mMaxLength;
 
-        super.setOnClickListener(new OnClickListener() {
+        super.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // When tapped, move cursor to end of text.
@@ -70,7 +70,7 @@ public class OtpEditText extends AppCompatEditText {
     }
 
     @Override
-    public void setOnClickListener(OnClickListener l) {
+    public void setOnClickListener(View.OnClickListener l) {
         mClickListener = l;
     }
 

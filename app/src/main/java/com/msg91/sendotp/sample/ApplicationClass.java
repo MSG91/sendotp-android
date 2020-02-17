@@ -1,7 +1,5 @@
 package com.msg91.sendotp.sample;
 
-
-
 import android.app.Application;
 
 import com.msg91.sendotpandroid.library.internal.SendOTP;

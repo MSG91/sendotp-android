@@ -6,6 +6,7 @@
 
 SendOTP Android Sdk!
 ===================
+## For Androidx and Above use this library and [for older sdk 28 and blow see here](https://github.com/MSG91/sendotp-android/tree/1.2-beta4)
 **This Library Supports Androidx and older versions up to (SDK-16):**
 
 The  **SendOtp** Verification SDK makes verifying phone numbers easy. SDK supports the verification of phone numbers via **SMS & Calls**.
@@ -22,7 +23,7 @@ Just add the
 
     dependencies {
     ...
-     implementation 'com.msg91.sendotpandroid.library:library:1.2-beta3'
+     implementation 'com.msg91.sendotpandroid.library:library:1.2-beta4'
     ...
     }
 Maven
@@ -32,14 +33,14 @@ grab via Maven:
     <dependency>
       <groupId>com.msg91.sendotpandroid.library</groupId>
       <artifactId>library</artifactId>
-      <version>1.2-beta3</version>
+      <version>1.2-beta4</version>
       <type>pom</type>
     </dependency>
 Ivy
 ------
 grab via Ivy:
 
-    <dependency org='com.msg91.sendotpandroid.library' name='library' rev='1.2-beta3'>
+    <dependency org='com.msg91.sendotpandroid.library' name='library' rev='1.2-beta4'>
       <artifact name='library' ext='pom' ></artifact>
     </dependency>
 
@@ -156,11 +157,6 @@ and use blow method
 
     .unicode(true)
 
-## NoN Androidx user: (SdkVersion 16 to  28)
-Add blow line in gradle.properties while using this library
-
-    android.useAndroidX=true
-    android.enableJetifier=true
 
 
 Optional Parameters

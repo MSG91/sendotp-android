@@ -17,7 +17,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
-
 import com.msg91.sendotpandroid.library.internal.Iso2Phone;
 import com.msg91.sendotpandroid.library.utils.PhoneNumberFormattingTextWatcher;
 import com.msg91.sendotpandroid.library.utils.PhoneNumberUtils;
