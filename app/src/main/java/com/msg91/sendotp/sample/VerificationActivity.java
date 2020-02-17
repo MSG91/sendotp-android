@@ -4,6 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -11,10 +14,6 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
 import com.msg91.sendotpandroid.library.internal.SendOTP;
 import com.msg91.sendotpandroid.library.listners.VerificationListener;
@@ -54,13 +53,16 @@ public class VerificationActivity extends AppCompatActivity implements
         new SendOTPConfigBuilder()
                 .setCountryCode(countryCode)
                 .setMobileNumber(phoneNumber)
-                .setVerifyWithoutOtp(true)//direct verification while connect with mobile network
-                .setAutoVerification(VerificationActivity.this)//Auto read otp from Sms And Verify
+                //////////////////direct verification while connect with mobile network/////////////////////////
+                .setVerifyWithoutOtp(true)
+                //////////////////Auto read otp from Sms And Verify///////////////////////////
+                .setAutoVerification(VerificationActivity.this)
+                .setOtpExpireInMinute(5)//default value is one day
+                .setOtpHits(3) //number of otp request per number
+                .setOtpHitsTimeOut(0L)//number of otp request time out reset in milliseconds default is 24 hours
                 .setSenderId("ABCDEF")
                 .setMessage("##OTP## is Your verification digits.")
-                .setOtpLength(OTP_LNGTH)
-                .setVerificationCallBack(this).build();
-
+                .setOtpLength(OTP_LNGTH).setVerificationCallBack(this).build();
         SendOTP.getInstance().getTrigger().initiate();
 
 

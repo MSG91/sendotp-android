@@ -4,12 +4,12 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.support.v7.widget.AppCompatEditText;
 import android.text.Editable;
 import android.util.AttributeSet;
 import android.view.ActionMode;
 import android.view.View;
 
-import androidx.appcompat.widget.AppCompatEditText;
 
 public class OtpEditText extends AppCompatEditText {
     private float mSpace = 10; //24 dp by default, space between the lines
@@ -29,7 +29,7 @@ public class OtpEditText extends AppCompatEditText {
     public int mMaxLength = 4;
     private float mLineStroke = 2;
     private Paint mLinesPaint;
-    private OnClickListener mClickListener;
+    private View.OnClickListener mClickListener;
     private Canvas canvas;
 
     public OtpEditText(Context context) {
@@ -57,7 +57,7 @@ public class OtpEditText extends AppCompatEditText {
         mLineSpacing = multi * mLineSpacing; //convert to pixels for our density
         mNumChars = mMaxLength;
 
-        super.setOnClickListener(new OnClickListener() {
+        super.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // When tapped, move cursor to end of text.
@@ -70,7 +70,7 @@ public class OtpEditText extends AppCompatEditText {
     }
 
     @Override
-    public void setOnClickListener(OnClickListener l) {
+    public void setOnClickListener(View.OnClickListener l) {
         mClickListener = l;
     }
 

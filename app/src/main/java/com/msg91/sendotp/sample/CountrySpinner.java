@@ -1,15 +1,13 @@
 package com.msg91.sendotp.sample;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.AppCompatSpinner;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
-
-
-import androidx.appcompat.widget.AppCompatSpinner;
-import androidx.core.content.ContextCompat;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +38,7 @@ public class CountrySpinner extends AppCompatSpinner {
 
         setAdapter(adapter);
 
-        setOnItemSelectedListener(new OnItemSelectedListener() {
+        setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
                 final String selectedCountry = (String) adapterView.getItemAtPosition(position);
