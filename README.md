@@ -22,19 +22,26 @@ Just add the
 
     dependencies {
     ...
-     implementation 'com.msg91.sendotpandroid.library:library:1.2-beta3'
+     implementation 'com.msg91.sendotpandroid.library:library:1.2-beta'
     ...
     }
 Maven
 ------
 grab via Maven:
 
-<dependency>
-  <groupId>com.msg91.sendotpandroid.library</groupId>
-  <artifactId>library</artifactId>
-  <version>1.2-beta3</version>
-  <type>pom</type>
-</dependency>
+    <dependency>
+      <groupId>com.msg91.sendotpandroid.library</groupId>
+      <artifactId>library</artifactId>
+      <version>1.2-beta3</version>
+      <type>pom</type>
+    </dependency>
+Ivy
+------
+grab via Ivy:
+
+    <dependency org='com.msg91.sendotpandroid.library' name='library' rev='1.2-beta3'>
+      <artifact name='library' ext='pom' ></artifact>
+    </dependency>
 
 > -Login or create account at [MSG91]([https://control.msg91.com/signup/sendotp](https://control.msg91.com/signup/sendotp)) to use sendOTP services.
 
