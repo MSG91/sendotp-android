@@ -22,7 +22,7 @@ Just add the
 
     dependencies {
     ...
-     implementation 'com.msg91.sendotpandroid.library:library:1.2-beta'
+     implementation 'com.msg91.sendotpandroid.library:library:1.2-beta3'
     ...
     }
 Maven
