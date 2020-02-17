@@ -4,9 +4,10 @@
 
 
 
+
 SendOTP Android Sdk!
 ===================
-## For NoN-Androidx user: (SdkVersion 16 to  28)
+## For NoN-Androidx user: (SdkVersion 16 to  28) [for 29 (androidx) or above see here](https://github.com/MSG91/sendotp-android/tree/1.3-beta4)
 
 The  **SendOtp** Verification SDK makes verifying phone numbers easy. SDK supports the verification of phone numbers via **SMS & Calls**.
 
