@@ -5,6 +5,7 @@
 
 
 
+
 SendOTP Android Sdk!
 ===================
 ## For Androidx and Above use this library and [for older sdk 28 and blow see here](https://github.com/MSG91/sendotp-android/tree/1.2-beta4)
@@ -24,7 +25,7 @@ Just add the
 
     dependencies {
     ...
-     implementation 'com.msg91.sendotpandroid.library:library:1.3-beta4'
+     implementation 'com.msg91.sendotpandroid.library:library:1.3.1'
     ...
     }
 Maven
@@ -34,14 +35,14 @@ grab via Maven:
     <dependency>
       <groupId>com.msg91.sendotpandroid.library</groupId>
       <artifactId>library</artifactId>
-      <version>1.3-beta4</version>
+      <version>1.3.1</version>
       <type>pom</type>
     </dependency>
 Ivy
 ------
 grab via Ivy:
 
-    <dependency org='com.msg91.sendotpandroid.library' name='library' rev='1.3-beta4'>
+    <dependency org='com.msg91.sendotpandroid.library' name='library' rev='1.3.1'>
       <artifact name='library' ext='pom' ></artifact>
     </dependency>
 
