@@ -39,7 +39,7 @@ public class CountrySpinner extends AppCompatSpinner {
 
         setAdapter(adapter);
 
-        setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        setOnItemSelectedListener(new OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
                 final String selectedCountry = (String) adapterView.getItemAtPosition(position);
