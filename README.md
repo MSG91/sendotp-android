@@ -1,11 +1,6 @@
 
 
 
-
-
-
-
-
 SendOTP Android Sdk!
 ===================
 ## For Androidx and Above use this library and [for older sdk 28 and blow see here](https://github.com/MSG91/sendotp-android/tree/version_1.2)
@@ -159,7 +154,7 @@ and use blow method
 
     .unicode(true)
 
-
+**Quick integration video [here it is](https://www.youtube.com/watch?v=LSHhzTuj2gM)**
 
 Optional Parameters
 ------
