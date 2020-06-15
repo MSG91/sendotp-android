@@ -7,6 +7,7 @@
 
 
 
+
 SendOTP Android Sdk!
 ===================
 ## For NoN-Androidx user: (SdkVersion 16 to  28) [for 29 (androidx) or above see here](https://github.com/MSG91/sendotp-android)
@@ -25,7 +26,7 @@ Just add the
 
     dependencies {
     ...
-     implementation 'com.msg91.sendotpandroid.library:library:1.2.1'
+     implementation 'com.msg91.sendotpandroid.library:library:1.2.2'
     ...
     }
 Maven
@@ -35,14 +36,14 @@ grab via Maven:
     <dependency>
       <groupId>com.msg91.sendotpandroid.library</groupId>
       <artifactId>library</artifactId>
-      <version>1.2.1</version>
+      <version>1.2.2</version>
       <type>pom</type>
     </dependency>
 Ivy
 ------
 grab via Ivy:
 
-    <dependency org='com.msg91.sendotpandroid.library' name='library' rev='1.2.1'>
+    <dependency org='com.msg91.sendotpandroid.library' name='library' rev='1.2.2'>
       <artifact name='library' ext='pom' ></artifact>
     </dependency>
 
@@ -75,8 +76,20 @@ After login at [MSG91](https://control.msg91.com/) </i> follow below steps to ge
       public void onCreate() {
             super.onCreate();
             SendOTP.initializeApp(this);  //initialization
-        }
+             }
     }
+>  initialize **flavor supporting apps** '**SendOTP**' in your Application class.
+>
+
+    package com.msg91.sendotp.sample;
+    public class ApplicationClass extends Application {
+        @Override
+      public void onCreate() {
+            super.onCreate();
+            SendOTP.initializeApp(this,"com.msg91.sendotp.sample");        //initialization
+             }
+    }
+
 
 >  implement '**VerificationListener**' in your class & override below result callback.
 
