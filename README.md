@@ -18,13 +18,23 @@ Getting started
 Gradle
 ------
 
-Just add the
+Just add below dependency in project's app level build.gradle file
 
     dependencies {
     ...
-     implementation 'com.msg91.sendotpandroid.library:library:1.3.3'
+     implementation 'com.msg91.sendotpandroid.library:library:1.3.8'
     ...
+    }  
+    
+    
+Also, add below url in project's  project level build.gradle file   
+    
+    maven{
+      url "https://dl.bintray.com/walkover/Android-Libs"
     }
+    
+
+
 Maven
 ------
 grab via Maven:
@@ -32,14 +42,14 @@ grab via Maven:
     <dependency>
       <groupId>com.msg91.sendotpandroid.library</groupId>
       <artifactId>library</artifactId>
-      <version>1.3.3</version>
+      <version>1.3.8</version>
       <type>pom</type>
     </dependency>
 Ivy
 ------
 grab via Ivy:
 
-    <dependency org='com.msg91.sendotpandroid.library' name='library' rev='1.3.3'>
+    <dependency org='com.msg91.sendotpandroid.library' name='library' rev='1.3.8'>
       <artifact name='library' ext='pom' ></artifact>
     </dependency>
 
@@ -54,36 +64,18 @@ After login at [MSG91](https://control.msg91.com/) </i> follow below steps to ge
 
 > - Select **API** option available on panel.
 > - If you are first time user then generate new authkey.
-> - copy authKey & keep it enable, gradle under defaultConfig.
-
-    android{
-     defaultConfig{
-        buildConfigField"String","SEND_OTP_KEY",'"ADD_YOUR_KEY_HERE"'
-      }
-    }
+> - copy authKey & keep it enable
 
 #### <i class="icon-book"></i> Usage
 
 >  initialize'**SendOTP**' in your Application class.
->
 
     public class ApplicationClass extends Application {
         @Override
       public void onCreate() {
-            super.onCreate();
-            SendOTP.initializeApp(this);  //initialization
-        }
-    }
->  initialize **flavor supporting apps** '**SendOTP**' in your Application class.
->
-
-    package com.msg91.sendotp.sample;
-    public class ApplicationClass extends Application {
-        @Override
-      public void onCreate() {
-            super.onCreate();
-            SendOTP.initializeApp(this,"com.msg91.sendotp.sample");        //initialization
-             }
+               super.onCreate();
+              SendOTP.initializeApp(this,"SEND_OTP_KEY:authKey");        //initialization
+      }
     }
 
 
