@@ -8,6 +8,6 @@ public class ApplicationClass extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        SendOTP.initializeApp(this,"SEND_OTP_KEY");
+        SendOTP.initializeApp(this,"SEND_OTP_KEY:authKey");
     }
 }
