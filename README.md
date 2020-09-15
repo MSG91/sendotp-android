@@ -74,7 +74,7 @@ After login at [MSG91](https://control.msg91.com/) </i> follow below steps to ge
         @Override
       public void onCreate() {
                super.onCreate();
-              SendOTP.initializeApp(this,"SEND_OTP_KEY:authKey");        //initialization
+              SendOTP.initializeApp(this,"authKey");        //initialization
       }
     }
 
