@@ -8,6 +8,6 @@ public class ApplicationClass extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        SendOTP.initializeApp(this);
+        SendOTP.initializeApp(this,"com.msg91.sendotp.sample");
     }
 }

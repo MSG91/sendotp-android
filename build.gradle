@@ -4,6 +4,9 @@ buildscript {
     repositories {
         jcenter()
         google()
+        maven{
+            url "https://dl.bintray.com/walkover/Android-Libs"
+        }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.5.3'
@@ -17,6 +20,9 @@ allprojects {
     repositories {
         jcenter()
         google()
+        maven{
+            url "https://dl.bintray.com/walkover/Android-Libs"
+        }
     }
 }
 
