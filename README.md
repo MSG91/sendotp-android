@@ -64,13 +64,7 @@ After login at [MSG91](https://control.msg91.com/) </i> follow below steps to ge
 
 > - Select **API** option available on panel.
 > - If you are first time user then generate new authkey.
-> - copy authKey & keep it enable, gradle under defaultConfig.
-
-    android{
-     defaultConfig{
-        buildConfigField"String","SEND_OTP_KEY",'"ADD_YOUR_KEY_HERE"'
-      }
-    }
+> - copy authKey & keep it enable
 
 #### <i class="icon-book"></i> Usage
 
@@ -80,7 +74,7 @@ After login at [MSG91](https://control.msg91.com/) </i> follow below steps to ge
         @Override
       public void onCreate() {
             super.onCreate();
-            SendOTP.initializeApp(this,"SEND_OTP_KEY");        //initialization
+            SendOTP.initializeApp(this,"SEND_OTP_KEY:authLey");        //initialization
              }
     }
 
