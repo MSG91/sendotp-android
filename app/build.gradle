@@ -10,7 +10,6 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        buildConfigField "String", "SEND_OTP_KEY", '"64085ADihTNXf5dfa398aP1"'
     }
     buildTypes {
         release {
