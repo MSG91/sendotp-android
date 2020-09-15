@@ -73,9 +73,9 @@ After login at [MSG91](https://control.msg91.com/) </i> follow below steps to ge
     public class ApplicationClass extends Application {
         @Override
       public void onCreate() {
-            super.onCreate();
-            SendOTP.initializeApp(this,"SEND_OTP_KEY:authLey");        //initialization
-             }
+               super.onCreate();
+              SendOTP.initializeApp(this,"SEND_OTP_KEY:authKey");        //initialization
+      }
     }
 
 
