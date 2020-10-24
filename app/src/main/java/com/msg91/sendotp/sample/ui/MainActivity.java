@@ -31,7 +31,6 @@ import com.msg91.sendotpandroid.library.utils.PhoneNumberUtils;
 import java.lang.reflect.Method;
 import java.util.Locale;
 
-import static com.msg91.sendotpandroid.library.utils.CommonUtils.checkNetworkConnection;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -106,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
         if (networkConnectivity.isNetworkAvailable(this)) {
             openActivity(getE164Number());
         } else {
-            checkNetworkConnection(this);
+            Toast.makeText(this, "Internet not availble ", Toast.LENGTH_SHORT).show();
         }
 
     }

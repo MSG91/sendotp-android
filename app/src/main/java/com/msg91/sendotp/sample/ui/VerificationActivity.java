@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,9 +26,6 @@ import com.msg91.sendotpandroid.library.listners.VerificationListener;
 import com.msg91.sendotpandroid.library.roots.RetryType;
 import com.msg91.sendotpandroid.library.roots.SendOTPConfigBuilder;
 import com.msg91.sendotpandroid.library.roots.SendOTPResponseCode;
-
-
-import static com.msg91.sendotpandroid.library.utils.CommonUtils.checkNetworkConnection;
 
 public class VerificationActivity extends AppCompatActivity implements
         ActivityCompat.OnRequestPermissionsResultCallback, VerificationListener {
@@ -57,7 +55,7 @@ public class VerificationActivity extends AppCompatActivity implements
             enableInputField(true);
             initiateVerification();
         } else {
-            checkNetworkConnection(this);
+            Toast.makeText(this, "Internet not availble ", Toast.LENGTH_SHORT).show();
         }
 
 
@@ -114,7 +112,7 @@ public class VerificationActivity extends AppCompatActivity implements
                 enableInputField(false);
             }
         }else {
-            checkNetworkConnection(this);
+            Toast.makeText(this, "Internet not availble ", Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -210,7 +208,7 @@ public class VerificationActivity extends AppCompatActivity implements
                     DataManager.getInstance().hideProgressMessage();
                 } else if (responseCode == SendOTPResponseCode.NO_INTERNET_CONNECTED) {
                     DataManager.getInstance().hideProgressMessage();
-                    checkNetworkConnection(VerificationActivity.this);
+                    Toast.makeText(VerificationActivity.this, "Internet not availble ", Toast.LENGTH_SHORT).show();
                 } else {
                     DataManager.getInstance().hideProgressMessage();
                     hideKeypad();
