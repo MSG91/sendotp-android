@@ -1,4 +1,4 @@
-package com.msg91.sendotp.sample;
+package com.msg91.sendotp.sample.utils;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -10,6 +10,18 @@ import android.view.ActionMode;
 import android.view.View;
 
 import androidx.appcompat.widget.AppCompatEditText;
+
+import com.msg91.sendotp.sample.R;
+
+/**
+ * Copyright (C) sendotp-android - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * <p>
+ * Created by Samset on 23,October,2020 at 6:34 PM for sendotp-android.
+ * <p>
+ * New Delhi,India
+ */
 
 public class OtpEditText extends AppCompatEditText {
     private float mSpace = 10; //24 dp by default, space between the lines

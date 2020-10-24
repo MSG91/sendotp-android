@@ -1,27 +1,31 @@
-package com.msg91.sendotp.sample;
+package com.msg91.sendotp.sample.ui;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.msg91.sendotp.sample.R;
+import com.msg91.sendotp.sample.core.DataManager;
+import com.msg91.sendotp.sample.utils.NetworkUtils;
+import com.msg91.sendotp.sample.utils.OtpEditText;
 import com.msg91.sendotpandroid.library.internal.SendOTP;
 import com.msg91.sendotpandroid.library.listners.VerificationListener;
 import com.msg91.sendotpandroid.library.roots.RetryType;
 import com.msg91.sendotpandroid.library.roots.SendOTPConfigBuilder;
 import com.msg91.sendotpandroid.library.roots.SendOTPResponseCode;
-
 
 public class VerificationActivity extends AppCompatActivity implements
         ActivityCompat.OnRequestPermissionsResultCallback, VerificationListener {
@@ -29,11 +33,11 @@ public class VerificationActivity extends AppCompatActivity implements
     private static final int OTP_LNGTH = 4;
     TextView resend_timer;
     private OtpEditText mOtpEditText;
+    private NetworkUtils networkConnectivity;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_verification);
         resend_timer = (TextView) findViewById(R.id.resend_timer);
@@ -46,8 +50,15 @@ public class VerificationActivity extends AppCompatActivity implements
         startTimer();
         mOtpEditText = findViewById(R.id.inputCode);
         mOtpEditText.setMaxLength(OTP_LNGTH);
-        enableInputField(true);
-        initiateVerification();
+        networkConnectivity = NetworkUtils.getInstance();
+        if (networkConnectivity.isNetworkAvailable(this)) {
+            enableInputField(true);
+            initiateVerification();
+        } else {
+            Toast.makeText(this, "Internet not availble ", Toast.LENGTH_SHORT).show();
+        }
+
+
     }
 
     void createVerification(String phoneNumber, int countryCode) {
@@ -65,7 +76,6 @@ public class VerificationActivity extends AppCompatActivity implements
                 .setMessage("##OTP## is Your verification digits.")
                 .setOtpLength(OTP_LNGTH)
                 .setVerificationCallBack(this).build();
-
         SendOTP.getInstance().getTrigger().initiate();
 
 
@@ -91,14 +101,18 @@ public class VerificationActivity extends AppCompatActivity implements
 
     public void onSubmitClicked(View view) {
         String code = mOtpEditText.getText().toString();
-        if (!code.isEmpty()) {
-            hideKeypad();
-            verifyOtp(code);
-            DataManager.getInstance().showProgressMessage(this, "");
-            TextView messageText = (TextView) findViewById(R.id.textView);
-            messageText.setText("Verification in progress");
-            enableInputField(false);
 
+        if (networkConnectivity.isNetworkAvailable(this)) {
+            if (!code.isEmpty()) {
+                hideKeypad();
+                verifyOtp(code);
+                DataManager.getInstance().showProgressMessage(this, "");
+                TextView messageText = (TextView) findViewById(R.id.textView);
+                messageText.setText("Verification in progress");
+                enableInputField(false);
+            }
+        }else {
+            Toast.makeText(this, "Internet not availble ", Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -160,7 +174,7 @@ public class VerificationActivity extends AppCompatActivity implements
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                Log.e(TAG, "onSendOtpResponse: " + responseCode.getCode() + "=======" + message);
+                //Log.e(TAG, "onSendOtpResponse: " + responseCode.getCode() + "=======" + message);
                 if (responseCode == SendOTPResponseCode.DIRECT_VERIFICATION_SUCCESSFUL_FOR_NUMBER || responseCode == SendOTPResponseCode.OTP_VERIFIED) {
                     DataManager.getInstance().hideProgressMessage();
                     enableInputField(false);
@@ -194,12 +208,14 @@ public class VerificationActivity extends AppCompatActivity implements
                     DataManager.getInstance().hideProgressMessage();
                 } else if (responseCode == SendOTPResponseCode.NO_INTERNET_CONNECTED) {
                     DataManager.getInstance().hideProgressMessage();
+                    Toast.makeText(VerificationActivity.this, "Internet not availble ", Toast.LENGTH_SHORT).show();
                 } else {
                     DataManager.getInstance().hideProgressMessage();
                     hideKeypad();
                     hideProgressBarAndShowMessage(R.string.failed);
                     enableInputField(true);
                 }
+                SendOTP.getInstance().getTrigger().stop();
             }
         });
     }
@@ -233,9 +249,5 @@ public class VerificationActivity extends AppCompatActivity implements
         }
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        SendOTP.getInstance().getTrigger().stop();
-    }
+
 }

@@ -5,7 +5,7 @@
                 android:layout_height="match_parent"
                 android:padding="0dip"
     android:background="@drawable/gradient_bg"
-                tools:context=".VerificationActivity">
+                tools:context=".ui.VerificationActivity">
 
     <ImageView
         android:layout_width="wrap_content"
@@ -80,7 +80,7 @@
                     android:textColor="@color/white"
                     android:textSize="18sp"/>
 
-                <com.msg91.sendotp.sample.OtpEditText
+                <com.msg91.sendotp.sample.utils.OtpEditText
                     android:id="@+id/inputCode"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

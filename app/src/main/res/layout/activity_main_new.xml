@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradient_bg"
     android:padding="0dip"
-    tools:context=".MainActivity">
+    tools:context=".ui.MainActivity">
 
     <LinearLayout
         android:id="@+id/numberInputLayout"
@@ -41,7 +41,7 @@
             android:background="@drawable/inputbox_new"
             android:orientation="horizontal">
 
-            <com.msg91.sendotp.sample.CountrySpinner
+            <com.msg91.sendotp.sample.utils.CountrySpinner
                 android:id="@+id/spinner"
                 style="@style/SpinnerTheme"
                 android:layout_width="255dp"
