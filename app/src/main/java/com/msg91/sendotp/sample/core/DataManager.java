@@ -1,4 +1,4 @@
-package com.msg91.sendotp.sample;
+package com.msg91.sendotp.sample.core;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -7,6 +7,18 @@ import android.text.Html;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
+
+import com.msg91.sendotp.sample.R;
+
+/**
+ * Copyright (C) sendotp-android - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * <p>
+ * Created by Samset on 23,October,2020 at 6:34 PM for sendotp-android.
+ * <p>
+ * New Delhi,India
+ */
 
 public class DataManager {
     private static final DataManager ourInstance = new DataManager();

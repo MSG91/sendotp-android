@@ -1,27 +1,37 @@
-package com.msg91.sendotp.sample;
+package com.msg91.sendotp.sample.ui;
 
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import com.msg91.sendotp.sample.R;
+import com.msg91.sendotp.sample.utils.CountrySpinner;
+import com.msg91.sendotp.sample.utils.NetworkUtils;
 import com.msg91.sendotpandroid.library.internal.Iso2Phone;
 import com.msg91.sendotpandroid.library.utils.PhoneNumberFormattingTextWatcher;
 import com.msg91.sendotpandroid.library.utils.PhoneNumberUtils;
 
+import java.lang.reflect.Method;
 import java.util.Locale;
+
+import static com.msg91.sendotpandroid.library.utils.CommonUtils.checkNetworkConnection;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,15 +42,15 @@ public class MainActivity extends AppCompatActivity {
     private TextView mSmsButton;
     private String mCountryIso;
     private TextWatcher mNumberTextWatcher;
+    private NetworkUtils networkConnectivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main_new);
         mPhoneNumber = findViewById(R.id.phoneNumber);
         mSmsButton = findViewById(R.id.smsVerificationButton);
-
+        networkConnectivity = NetworkUtils.getInstance();
         mCountryIso = PhoneNumberUtils.getDefaultCountryIso(this);
         final String defaultCountryName = new Locale("", mCountryIso).getDisplayName();
         final CountrySpinner spinner = (CountrySpinner) findViewById(R.id.spinner);
@@ -59,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
         resetNumberTextWatcher(mCountryIso);
 
         tryAndPrefillPhoneNumber();
+
     }
 
     private void tryAndPrefillPhoneNumber() {
@@ -93,7 +104,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onButtonClicked(View view) {
-        openActivity(getE164Number());
+        if (networkConnectivity.isNetworkAvailable(this)) {
+            openActivity(getE164Number());
+        } else {
+            checkNetworkConnection(this);
+        }
+
     }
 
     private void resetNumberTextWatcher(String countryIso) {
@@ -137,4 +153,6 @@ public class MainActivity extends AppCompatActivity {
         return mPhoneNumber.getText().toString().replaceAll("\\D", "").trim();
         // return PhoneNumberUtils.formatNumberToE164(mPhoneNumber.getText().toString(), mCountryIso);
     }
+
+
 }

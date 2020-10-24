@@ -10,6 +10,9 @@ SendOTP Android Sdk!
 
 The  **SendOtp** Verification SDK makes verifying phone numbers easy. SDK supports the verification of phone numbers via **SMS & Calls**.
 
+
+
+
 ----------
 
 Getting started
@@ -22,7 +25,7 @@ Just add below dependency in project's app level build.gradle file
 
     dependencies {
     ...
-     implementation 'com.msg91.sendotpandroid.library:library:1.3.8'
+     implementation ‘com.msg91.sendotpandroid.library:library:1.4’
     ...
     }  
     
@@ -33,7 +36,7 @@ Also, add below url in project's  project level build.gradle file
       url "https://dl.bintray.com/walkover/Android-Libs"
     }
     
-
+**New Update**: Auto verify if same mobile number sim is insrted in device.
 
 Maven
 ------
@@ -70,7 +73,7 @@ After login at [MSG91](https://control.msg91.com/) </i> follow below steps to ge
 
 >  initialize'**SendOTP**' in your Application class.
 
-    public class ApplicationClass extends Application {
+    public class AppController extends Application {
         @Override
       public void onCreate() {
                super.onCreate();
@@ -130,14 +133,6 @@ manually **verifying OTP**
 
 
     SendOTP.getInstance().getTrigger().resend(RetryType.TEXT);
-
-**onDestroy**
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        SendOTP.getInstance().getTrigger().stop();
-    }
 
 
 

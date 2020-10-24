@@ -1,4 +1,4 @@
-package com.msg91.sendotp.sample;
+package com.msg91.sendotp.sample.utils;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -10,11 +10,23 @@ import android.widget.TextView;
 import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.core.content.ContextCompat;
 
+import com.msg91.sendotp.sample.R;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.TreeMap;
+
+/**
+ * Copyright (C) sendotp-android - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * <p>
+ * Created by Samset on 23,October,2020 at 6:34 PM for sendotp-android.
+ * <p>
+ * New Delhi,India
+ */
 
 public class CountrySpinner extends AppCompatSpinner {
     private Map<String, String> mCountries = new TreeMap<>();
