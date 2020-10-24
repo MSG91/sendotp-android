@@ -86,8 +86,7 @@ public class MainActivity extends AppCompatActivity {
             tryAndPrefillPhoneNumber();
         } else {
             if (ActivityCompat.shouldShowRequestPermissionRationale(this, permissions[0])) {
-                Toast.makeText(this, "This application needs permission to read your phone number to automatically "
-                        + "pre-fill it", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "This application needs permission to read your phone number to automatically pre-fill it", Toast.LENGTH_LONG).show();
             }
         }
     }

@@ -15,10 +15,12 @@ import com.msg91.sendotpandroid.library.internal.SendOTP;
  * New Delhi,India
  */
 
+
 public class AppController extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
         SendOTP.initializeApp(this,"authKey");
+
     }
 }
