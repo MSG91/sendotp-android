@@ -22,17 +22,17 @@ Just add below dependency in project's app level build.gradle file
 
     dependencies {
     ...
-     implementation 'com.msg91.sendotpandroid.library:library:1.3.8'
+     implementation 'com.msg91.sendotpandroid.library:library:1.7'
     ...
-    }  
-    
-    
-Also, add below url in project's  project level build.gradle file   
-    
+    }
+
+
+Also, add below url in project's  project level build.gradle file
+
     maven{
       url "https://dl.bintray.com/walkover/Android-Libs"
     }
-    
+
 
 
 Maven
@@ -42,7 +42,7 @@ grab via Maven:
     <dependency>
       <groupId>com.msg91.sendotpandroid.library</groupId>
       <artifactId>library</artifactId>
-      <version>1.3.8</version>
+      <version>1.7</version>
       <type>pom</type>
     </dependency>
 Ivy
@@ -65,6 +65,7 @@ After login at [MSG91](https://control.msg91.com/) </i> follow below steps to ge
 > - Select **API** option available on panel.
 > - If you are first time user then generate new authkey.
 > - copy authKey & keep it enable
+> - DLT_TE_ID to get from Network provider
 
 #### <i class="icon-book"></i> Usage
 
@@ -74,7 +75,7 @@ After login at [MSG91](https://control.msg91.com/) </i> follow below steps to ge
         @Override
       public void onCreate() {
                super.onCreate();
-              SendOTP.initializeApp(this,"authKey");        //initialization
+              SendOTP.initializeApp(this,"authKey"), "your DLT_TE_ID here"";        //initialization
       }
     }
 
