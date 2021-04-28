@@ -79,7 +79,6 @@ After login at [MSG91](https://control.msg91.com/) </i> follow below steps to ge
       }
     }
 
-
 >  implement '**VerificationListener**' in your class & override below result callback.
 
     @Override
