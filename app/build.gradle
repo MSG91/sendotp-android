@@ -4,6 +4,7 @@ android {
     compileSdkVersion 30
     buildToolsVersion "29.0.3"
     defaultConfig {
+        multiDexEnabled true
         applicationId "com.msg91.sendotp.sample"
         minSdkVersion 16
         targetSdkVersion 30
@@ -29,4 +30,5 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation 'com.msg91.sendotpandroid.library:library:1.7'
+    implementation 'com.android.support:multidex:1.0.3'
 }
